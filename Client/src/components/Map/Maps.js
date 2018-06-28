@@ -15,4 +15,4 @@ import "./style.css";
 
 
 
-export default Nav;
+export default Maps;

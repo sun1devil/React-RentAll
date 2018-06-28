@@ -1,0 +1,20 @@
+{
+  "name": "React-RentAll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sun1devil/React-RentAll.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sun1devil/React-RentAll/issues"
+  },
+  "homepage": "https://github.com/sun1devil/React-RentAll#readme"
+}

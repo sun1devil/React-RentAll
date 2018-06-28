@@ -1,4 +1,4 @@
-# Rent-All
+# Rent-All 2.0
 
 Project to all ow users to rent out to, or rent from other users thus,  in this project provider posts items to rent on the Rent-All website. User selects an item user wants to rent and for how long user wants to rent the item. Once an item has been rented, the item will not be available for rent to other users.
 
@@ -29,7 +29,7 @@ Once all packages have been installed then the program can run using node server
 * [Node](https://nodejs.org/en) - Javascript run-time environment that exectues server side code.
 * [Express](https://www.npmjs.com/package/express) - Node package used as middleware to create routes.
 * [Body-Parser](https://www.npmjs.com/package/body-parser) - Node package used as middleware to extract entire body portion of an incoming request.
-* [Dotenv](https://www.npmjs.com/package/dotenv) - Node package used as middlewares to keep passwords and other sensitive data from being uploaded and shared on the web through github. 
+* git [Dotenv](https://www.npmjs.com/package/dotenv) - Node package used as middlewares to keep passwords and other sensitive data from being uploaded and shared on the web through github. 
 * [Passport](https://www.npmjs.com/package/passport) - Node package used as middleware for user authentication by hashing passwords. 
 * [Bcrypt](https://www.npmjs.com/package/bcrypt) - Node package used as middleware with Node and passport package for user authentication and password decryption. 
 * [MySql](https://www.mysql.com/) - Structured Query Language is a relational database management system used for storing data.

@@ -2,11 +2,11 @@ import React from "react";
 import Test from "../components/Test";
 
 
-const Search = () => (
+const Acount = () => (
   <div>
-    <Test page="SEARCH"/>
+    <Test page="ACCOUNT"/>
      
 </div>
 );
 
-export default Search;
+export default Account;

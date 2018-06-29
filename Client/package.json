@@ -12,6 +12,7 @@
     "react-places-autocomplete": "^7.2.0",
     "react-pose": "^2.1.2",
     "react-responsive-modal": "^3.0.3",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-stripe-elements": "^2.0.0"
   },

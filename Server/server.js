@@ -2,24 +2,58 @@
 
 require("dotenv").config();
 //Dependencies
-const express = require("express");
+const express    = require("express");
 const bodyParser = require("body-parser");
-const exphbs = require("express-handlebars");
-
-
-const passport = require('passport');
-const flash = require('connect-flash');
-const CookieParser = require('cookie-parser');
-const session = require('express-session');
-
-const app = express();
-const PORT = process.env.PORT || 2000;
 
 
 
+var passport     = require('passport');
+var flash        = require('connect-flash');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session'); // cookie session
+
+const app  = express();
+const PORT = process.env.PORT || 8000;
+
+//Starting point of Node Express server.
+//Dependencies
+
+//
+var db = require("./models");
+
+require('./config/passport')(passport); // pass passport for configuration
+
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 
+app.use(session({
+    key: 'user_sid',
+    secret: 'goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
 
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash());
+// app.use(methodO("_method"));
+
+require("./controllers/html-routes")(app, passport);
+require("./controllers/account-controller")(app, passport);
+require("./controllers/item-controller")(app, passport);
+require("./controllers/search-controller")(app, passport);
+require("./controllers/transactions-controller")(app, passport);
+
+
+db.sequelize.sync().then(function(){
+    app.listen(PORT, function(){
+        console.log("Listening on localhost:" + PORT);
+    })
+})
 
 
 

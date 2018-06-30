@@ -4,13 +4,14 @@ require("dotenv").config();
 //Dependencies
 const express    = require("express");
 const bodyParser = require("body-parser");
-
+var axios        = require('axios');
 
 
 var passport     = require('passport');
 var flash        = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session'); // cookie session
+
 
 const app  = express();
 const PORT = process.env.PORT || 8000;
@@ -33,7 +34,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 600000
+        expires: 600000,
+        httpOnly: false
     }
 }));
 
@@ -42,12 +44,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 // app.use(methodO("_method"));
 
-require("./controllers/html-routes")(app, passport);
-require("./controllers/account-controller")(app, passport);
-require("./controllers/item-controller")(app, passport);
-require("./controllers/search-controller")(app, passport);
-require("./controllers/transactions-controller")(app, passport);
-
+require("./routes")(app, passport, axios);
 
 db.sequelize.sync().then(function(){
     app.listen(PORT, function(){

@@ -7,6 +7,7 @@
     "rc-calendar": "^9.6.2",
     "react": "^16.4.1",
     "react-animations": "^1.0.0",
+    "react-autosuggest": "^9.3.4",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
     "react-places-autocomplete": "^7.2.0",
@@ -14,7 +15,8 @@
     "react-responsive-modal": "^3.0.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-stripe-elements": "^2.0.0"
+    "react-stripe-elements": "^2.0.0",
+    "react-toolbox": "^2.0.0-beta.13"
   },
   "scripts": {
     "start": "react-scripts start",

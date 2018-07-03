@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import Test from "../components/Test";
 
+import Items from "../components/Items";
 
 class Search extends Component {
 
@@ -12,19 +13,46 @@ class Search extends Component {
         this.state = {
             searchLocation: "",
             searchItem: "",
-            reults: [
-              {
-               
-                name:"cat", 
-                description: "a cute cuddly cat",
-                price: 50, 
-                rate: "day", 
-                start_date:"08-01-2018", 
-                end_date: "08-10-2018", 
-                image: "url", 
-                active: true, 
-                feature: true, 
-                UserUUID: "66584723o8jbvdkjs734iukj"}
+            results: [
+                {
+                    uuid: "sdfghjk4567890cfgvhbjn",
+                    name:"cat", 
+                    description: "a cute cuddly cat",
+                    price: 50, 
+                    rate: "day", 
+                    start_date:"08-01-2018", 
+                    end_date: "08-10-2018", 
+                    image: "url", 
+                    active: true, 
+                    feature: true, 
+                    userUUID: "66584723o8jbvdkjs734iukj"
+                },
+                {
+                    uuid: "456789fdghjbnhy76rtdfgcv",
+                    name:"phone", 
+                    description: "a cute cuddly phone",
+                    price: 10, 
+                    rate: "day", 
+                    start_date:"08-01-2018", 
+                    end_date: "09-10-2018", 
+                    image: "url", 
+                    active: true, 
+                    feature: false, 
+                    userUUID: "456789dfhjnkml67tygjbhuyge"
+                },
+                {
+                    uuid: "38473874hehfhdkfhhfhfhfkl",
+                    name:"bike", 
+                    description: "mountain bike",
+                    price: 25, 
+                    rate: "day", 
+                    start_date:"07-01-2018", 
+                    end_date: "12-31-2018", 
+                    image: "url", 
+                    active: true, 
+                    feature: false, 
+                    userUUID: "438jfkejfadkjfgvuidgffhks"
+                }
               ]
          }
         //  this.pageLoad.bind(this);
@@ -51,6 +79,8 @@ class Search extends Component {
                   <div>
                       <p>{this.state.searchLocation}</p>
                       <p>{this.state.searchItem}</p>
+
+                      <Items results={this.state.results} />
                   </div>
               )
           }
@@ -62,7 +92,7 @@ class Search extends Component {
         return(
             <div>
             {this.pageLoad()}
-            {/* <Items results={this.results} /> */}
+           
             </div>
         )
     }

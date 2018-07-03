@@ -2,7 +2,7 @@
 var uuidv1  = require('uuid/v1');
 
 module.exports = function(sequelize, DataTypes) {
-    var Accounts = sequelize.define("Accounts", {
+    var Account = sequelize.define("Account", {
 
         uuid: {
           primaryKey: true,
@@ -83,12 +83,12 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
     // methods ======================
-    
-    Accounts.associate = function(models){
-        Accounts.belongTo(models.User, {
+
+    Account.associate = function(models){
+        Account.belongsTo(models.User, {
             foreignKey: "UserUUID"
         });
     };
 
-    return Accounts;
+    return Account;
 }

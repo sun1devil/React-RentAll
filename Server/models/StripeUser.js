@@ -10,9 +10,9 @@ module.exports = function(sequelize, DataTypes) {
           defaultValue: DataTypes.UUIDV1,
           isUnique :true
         },
-    
+
         customer_id: {
-            type: DateTypes.STRING,
+            type: DataTypes.STRING,
         },
 
         lastFour: {
@@ -21,9 +21,9 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     // methods ======================
-    
+
     StripeCustomer.associate = function(models){
-        StripeCustomer.belongTo(models.User, {
+        StripeCustomer.belongsTo(models.User, {
             foreignKey: "UserUUID"
         });
     };

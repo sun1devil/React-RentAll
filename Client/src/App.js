@@ -9,8 +9,8 @@ import Account from "./pages/Account";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
-
 import './App.css';
+
 
 
 const App = () => (
@@ -34,17 +34,6 @@ const App = () => (
   </Router>
 );
 
-
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <input/>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
   

@@ -3,7 +3,7 @@ import React from "react";
 const SearchButton = props => {
 console.log(props)
 return (
-<button value= {props}> Search </button>
+<button onClick={props.capture}> Search </button>
 )
 }
 

@@ -1,0 +1,15 @@
+{
+    "name": "React-RentAll",
+    "description": "Renting App",
+    "version": "0.1.0",
+    "main": "./Server/server",
+    "scripts": {
+    "start": "npm run start:dev",
+    "start:prod": "node ./Server/server",
+    "start:dev": "npm run client && cd Server && node server",
+    "client": "cd Client && npm run start",
+    "install": "cd Client && yarn install",
+    "build": "cd Client && npm run build",
+    "heroku-postbuild": "npm run build"
+    }
+}

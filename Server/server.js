@@ -1,31 +1,35 @@
-//Starting point of Node Express server.
+// Set up ======================================================
 
 require("dotenv").config();
 //Dependencies
 const express    = require("express");
 const bodyParser = require("body-parser");
-var axios        = require('axios');
+const axios      = require('axios');
 
-
-var passport     = require('passport');
-var flash        = require('connect-flash');
-var cookieParser = require('cookie-parser');
-var session      = require('express-session'); // cookie session
-
+const passport     = require('passport');
+const flash        = require('connect-flash');
+const cookieParser = require('cookie-parser');
+const session      = require('express-session'); // cookie session
 
 const app  = express();
 const PORT = process.env.PORT || 8000;
 
-//Starting point of Node Express server.
-//Dependencies
+const routes = require("./routes");
+const db     = require("./models");
 
-//
-var db = require("./models");
+
+// Configuration ==============================================
 
 require('./config/passport')(passport); // pass passport for configuration
 
-app.use(bodyParser.urlencoded({extended:false}));
+
+// Configure body parser for AJAX requests
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 
 app.use(session({
@@ -44,11 +48,15 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 // app.use(methodO("_method"));
 
-require("./routes")(app, passport, axios);
+app.use(routes);
+
+
+
+// Launch Server ==============================================
 
 db.sequelize.sync().then(function(){
     app.listen(PORT, function(){
-        console.log("Listening on localhost:" + PORT);
+        console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
     })
 })
 
@@ -56,6 +64,3 @@ db.sequelize.sync().then(function(){
 
 
 
-app.listen(PORT, function() {
-    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-  });

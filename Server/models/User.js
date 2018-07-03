@@ -1,3 +1,4 @@
+var Sequelize = require("sequelize");
 
 var uuidv1  = require('uuid/v1');
 
@@ -13,10 +14,11 @@ module.exports = function(sequelize, DataTypes) {
           defaultValue: DataTypes.UUIDV1,
           isUnique :true
         },
-       
+
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            isUnique :true,
             validate: {
                 isEmail: true,
                 min: 4,
@@ -35,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
 
-        createdAt: Sequelize.DATE, 
+        createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
 
     });
@@ -52,16 +54,16 @@ module.exports = function(sequelize, DataTypes) {
 
     User.associate = function(models){
         User.hasMany(models.Items, {
-            foreignKey: "owner_id",
+            foreignKey: "ownerUUID",
             onDelete: "cascade"
         });
     };
 
     User.associate = function(models){
         User.hasMany(models.Rentals, {
-            foreignKey: "rental_id"
+            foreignKey: "rentalUUID"
         });
     };
 
-    return Accounts;
+    return User;
 }

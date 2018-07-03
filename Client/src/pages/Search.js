@@ -14,7 +14,7 @@ class Search extends Component {
             searchItem: "",
             reults: [
               {
-                uuid:"ghdgd6wer7w8rhjdauyasd",
+               
                 name:"cat", 
                 description: "a cute cuddly cat",
                 price: 50, 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { withRouter } from "react-router-dom";
-
 import Test from "../components/Test";
+import SearchForm  from "../components/SearchForm";
 
 import Items from "../components/Items";
 
@@ -55,7 +55,8 @@ class Search extends Component {
                 }
               ]
          }
-        //  this.pageLoad.bind(this);
+         this.pageLoad.bind(this);
+         this.captureSearchValues.bind(this);
     }
 
     componentWillMount() {
@@ -67,25 +68,42 @@ class Search extends Component {
                 searchItem: this.props.location.state.searchItem
             })
         }
-      }
+    }
 
-      pageLoad(){
-      
-          if(this.state.searchLocation === undefined && this.state.searchItem === undefined){
-              return(<h1>NO RESULTS</h1>);
-          }
-          else if(this.state.searchLocation.length > 0 && this.state.searchItem.length> 0){
-              return(
-                  <div>
-                      <p>{this.state.searchLocation}</p>
-                      <p>{this.state.searchItem}</p>
 
-                      <Items results={this.state.results} />
-                  </div>
-              )
-          }
+    
 
-      }
+    captureSearchValues(data){
+        console.log(this)
+        this.setState({
+            searchLocation: data.address,
+            searchItem: data.value
+        })
+    }
+    pageLoad(){
+    
+        if(this.state.searchLocation === undefined && this.state.searchItem === undefined){
+            return(
+        <div>
+            <h1>NO RESULTS</h1>
+            <SearchForm  capture={this.captureSearchValues}/>
+        </div>
+        
+        );
+            
+        }
+        else if(this.state.searchLocation.length > 0 && this.state.searchItem.length> 0){
+            return(
+                <div>
+                    <p>{this.state.searchLocation}</p>
+                    <p>{this.state.searchItem}</p>
+                    <SearchForm capture={this.captureSearchValues.bind(this)} />
+                </div>
+            )
+        }
+
+
+    }
 
     render(){
         console.log(this.state);
@@ -100,3 +118,5 @@ class Search extends Component {
 }
 
 export default withRouter(Search);
+
+/** */

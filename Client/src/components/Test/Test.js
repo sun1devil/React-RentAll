@@ -1,15 +1,38 @@
-import React from "react";
+import React from 'react';
+import {render} from 'react-dom';
+import InfiniteCalendar, {
+  Calendar,
+  defaultMultipleDateInterpolation,
+  withMultipleDates,
+} from 'react-infinite-calendar';
+import 'react-infinite-calendar/styles.css';
 
-
-const Test = props => (
+const MultipleDatesCalendar = withMultipleDates(Calendar);
   
-    <p>
-      {props.page}
-      <br/>
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    </p>
+const Test = (props) => {
+   console.log (props)
+  return(
+    <div>
+    <InfiniteCalendar
+      Component={MultipleDatesCalendar}
+      /*
+       * The `interpolateSelection` prop allows us to map the resulting state when a user selects a date.
+       * By default, it adds the date to the selected dates array if it isn't already selected.
+       * If the date is already selected, it removes it.
+       *
+       * You could re-implement this if this isn't the behavior you want.
+       */
+      interpolateSelection={defaultMultipleDateInterpolation}
+      selected={[new Date(2017, 1, 10), new Date(2017, 1, 18), new Date()]}
+      />
+      </div>
+   
+  );
+  
+}
 
-);
+
+// Render the Calendar
 
 export default Test;
 

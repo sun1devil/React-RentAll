@@ -9,6 +9,7 @@ import Account from "./pages/Account";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
+import DateStateTest from "./components/DateStateTest";
 import './App.css';
 
 
@@ -26,6 +27,8 @@ const App = () => (
         <Route exact path="/account" component={Account} />
 
         <Route exact path="/search" component={Search} />
+
+        <Route exact path="/test" component={DateStateTest} />
 
         <Route component={NoMatch} />
 

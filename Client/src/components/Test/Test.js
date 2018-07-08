@@ -10,7 +10,6 @@ import 'react-infinite-calendar/styles.css';
 const MultipleDatesCalendar = withMultipleDates(Calendar);
   
 const Test = (props) => {
-   console.log (props)
   return(
     <div>
     <InfiniteCalendar
@@ -23,12 +22,12 @@ const Test = (props) => {
        * You could re-implement this if this isn't the behavior you want.
        */
       interpolateSelection={defaultMultipleDateInterpolation}
-      selected={[new Date(2017, 1, 10), new Date(2017, 1, 18), new Date()]}
+      selected={[new Date(2018,0,1)]}
+      onSelect={props.grabDates}
       />
       </div>
    
   );
-  
 }
 
 

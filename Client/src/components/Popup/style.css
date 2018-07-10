@@ -1,0 +1,61 @@
+.modal-content {
+	background: #EAEDEC;
+    border-radius: 3px;
+}
+
+.modal-content .btn {
+	display: block;
+	margin: 10px 0;
+}
+
+.modal-header {
+	padding-bottom: 0;
+	border: none;
+	color: #297f71;
+	font-weight: 400;
+}
+
+.modal-content h2 {
+	font-weight: 400;
+	color: #297f71;
+	margin-top: 0;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #80CBC4;
+	/*#091F1C;*/
+	padding-bottom: 20px;
+}
+
+.modal-header img {
+	height: 90px;
+}
+
+#user-email, #user-pw {
+	width:48%;
+}
+
+#user-email {
+	margin-right: 5px;
+}
+
+#user-pw {
+	margin-left: 5px;
+}
+
+@media only screen and (max-width: 40em) {
+	#user-email, #user-pw {
+		width:100%;
+	}
+
+	#user-email {
+		margin-right: 0;
+	}
+
+	#user-pw {
+		margin-left: 0;
+	}
+	.modal-content .btn {
+		width: 100%;
+	}
+} /* max-width 640px, mobile-only styles, use when QAing mobile issues */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+

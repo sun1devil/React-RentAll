@@ -1,15 +1,41 @@
 import React from "react";
+// import Test from "../components/Test";
+// import Autocomplete from 'react-toolbox/lib/autocomplete';
 
+// const TestHome = () => (
+//   <div>
+//     <Test page="HOME"/>
+//     onst source = {
+//   'ES-es': 'Spain',
+//   'TH-th': 'Thailand',
+//   'EN-gb': 'England',
+//   'EN-en': 'USA'
+// };
 
-const Test = props => (
-  
-    <p>
-      {props.page}
-      <br/>
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    </p>
+class Test extends React.Component {
+//   state = {
+//     countries: ['ES-es', 'TH-th']
+//   }
 
-);
+//   handleChange = (value) => {
+//     this.setState({countries: value});
+//   };
+
+//   render () {
+//     return (
+//       <Autocomplete
+//         direction="down"
+//         selectedPosition="above"
+//         label="Choose countries"
+//         onChange={this.handleChange}
+//         source={source}
+//         value={this.state.countries}
+//       />
+//     );
+//   }
+// }
+//     </div>
+// );
+}
 
 export default Test;
-

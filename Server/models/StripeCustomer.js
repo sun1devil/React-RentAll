@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
 
     StripeCustomer.associate = function(models){
         StripeCustomer.belongsTo(models.User, {
-            foreignKey: "UserUUID"
+            foreignKey: "userUUID"
         });
     };
 

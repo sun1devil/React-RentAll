@@ -16,7 +16,6 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 is:["^[a-z]+$",'i'],
                 min:1,
-                notNull:true,
                 notEmpty:true
             }
         },
@@ -26,7 +25,6 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 is:["^[a-z]+$",'i'],
                 min:1,
-                notNull:true,
                 notEmpty:true
             }
         },
@@ -35,7 +33,6 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 min: 1,
-                notNull:true,
                 notEmpty:true
             }
         },
@@ -43,9 +40,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                is:["^[a-z]+$",'i'],
                 min:1,
-                notNull:true,
                 notEmpty:true
             }
         },
@@ -55,7 +50,6 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 is:["^[a-z]+$",'i'],
                 min: 1,
-                notNull:true,
                 notEmpty:true
             }
         },
@@ -66,7 +60,6 @@ module.exports = function(sequelize, DataTypes) {
                 isInt: true,
                 not: ["[a-z]",'i'],
                 min: 1,
-                notNull:true,
                 notEmpty:true
             }
         },
@@ -77,7 +70,6 @@ module.exports = function(sequelize, DataTypes) {
                 isInt: true,
                 not: ["[a-z]",'i'],
                 len: [10],
-                notNull:true,
                 notEmpty:true
             }
         }
@@ -86,7 +78,7 @@ module.exports = function(sequelize, DataTypes) {
 
     Account.associate = function(models){
         Account.belongsTo(models.User, {
-            foreignKey: "UserUUID"
+            foreignKey: "userUUID"
         });
     };
 

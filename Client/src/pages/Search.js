@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
 import { withRouter } from "react-router-dom";
-import Test from "../components/Test";
-import SearchForm  from "../components/SearchForm";
 
-import Items from "../components/Items";
+import Test from "../components/Test";
+
 
 class Search extends Component {
 
@@ -13,104 +12,57 @@ class Search extends Component {
         this.state = {
             searchLocation: "",
             searchItem: "",
-            results: [
-                {
-                    uuid: "sdfghjk4567890cfgvhbjn",
-                    name:"cat", 
-                    description: "a cute cuddly cat",
-                    price: 50, 
-                    rate: "day", 
-                    start_date:"08-01-2018", 
-                    end_date: "08-10-2018", 
-                    image: "url", 
-                    active: true, 
-                    feature: true, 
-                    userUUID: "66584723o8jbvdkjs734iukj"
-                },
-                {
-                    uuid: "456789fdghjbnhy76rtdfgcv",
-                    name:"phone", 
-                    description: "a cute cuddly phone",
-                    price: 10, 
-                    rate: "day", 
-                    start_date:"08-01-2018", 
-                    end_date: "09-10-2018", 
-                    image: "url", 
-                    active: true, 
-                    feature: false, 
-                    userUUID: "456789dfhjnkml67tygjbhuyge"
-                },
-                {
-                    uuid: "38473874hehfhdkfhhfhfhfkl",
-                    name:"bike", 
-                    description: "mountain bike",
-                    price: 25, 
-                    rate: "day", 
-                    start_date:"07-01-2018", 
-                    end_date: "12-31-2018", 
-                    image: "url", 
-                    active: true, 
-                    feature: false, 
-                    userUUID: "438jfkejfadkjfgvuidgffhks"
-                }
-              ]
+            // reults: [
+            //   {
+            //     name:"cat",
+            //     description: "a cute cuddly cat",
+            //     price: 50,
+            //     rate: "day",
+            //     start_date:"08-01-2018",
+            //     end_date: "08-10-2018",
+            //     image: "url",
+            //     active: true,
+            //     feature: true,
+            //     UserUUID: "66584723o8jbvdkjs734iukj"}
+            //   ]
          }
-         this.pageLoad.bind(this);
-         this.captureSearchValues.bind(this);
+        //  this.pageLoad.bind(this);
     }
 
     componentWillMount() {
         console.log(this.props)
         if(this.props.location.state){
-          console.log("&&&&&&",this.state)
+          // console.log("&&&&&&",this.state)
             this.setState({
                 searchLocation: this.props.location.state.searchLocation,
                 searchItem: this.props.location.state.searchItem
             })
+            // API.searchItems()
+            // .then(results)
         }
-    }
+      }
 
+      pageLoad(){
 
-    
+          if(this.state.searchLocation === undefined && this.state.searchItem === undefined){
+              return(<h1>NO RESULTS</h1>);
+          }
+          else if(this.state.searchLocation.length > 0 && this.state.searchItem.length> 0){
+              return(
+                  <div>
+                      <p>{this.state.searchLocation}</p>
+                      <p>{this.state.searchItem}</p>
+                  </div>
+              )
+          }
 
-    captureSearchValues(data){
-        console.log(this)
-        this.setState({
-            searchLocation: data.address,
-            searchItem: data.value
-        })
-    }
-    pageLoad(){
-    
-        if(this.state.searchLocation === undefined && this.state.searchItem === undefined){
-            return(
-        <div>
-            <h1>NO RESULTS</h1>
-            <SearchForm  capture={this.captureSearchValues}/>
-        </div>
-        
-        );
-            
-        }
-        else if(this.state.searchLocation.length > 0 && this.state.searchItem.length> 0){
-            return(
-                <div>
-                    <p>{this.state.searchLocation}</p>
-                    <p>{this.state.searchItem}</p>
-                    <SearchForm capture={this.captureSearchValues.bind(this)} />
-                </div>
-            )
-        }
-
-
-    }
+      }
 
     render(){
         console.log(this.state);
         return(
             <div>
             {this.pageLoad()}
-           
             </div>
         )
     }
@@ -118,5 +70,3 @@ class Search extends Component {
 }
 
 export default withRouter(Search);
-
-/** */

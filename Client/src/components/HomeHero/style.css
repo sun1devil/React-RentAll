@@ -1,0 +1,81 @@
+#home-hero{
+	min-height: 100vh;
+	position: relative;
+	background: linear-gradient(#208373,#1C7365,#165B50,#124D44,#0A2E28,#082520);
+	z-index: 0;
+	overflow-x: hidden;
+}
+#home-hero .heading h1 {
+	color: #fff;
+	font-weight: 400;
+
+}
+.searchForm {
+	width: 36%;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 10px;
+}
+#home-hero .location-search-input, #home-hero .react-autosuggest__input {
+	background-color: rgba(255,255,255,.6);
+	color: #fff;
+	border: 1px solid #fff;
+	width: 100%;
+}
+
+#home-hero ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fff;
+}
+#home-hero ::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+}
+#home-hero :-ms-input-placeholder { /* IE 10+ */
+  color: #fff;
+}
+#home-hero :-moz-placeholder { /* Firefox 18- */
+  color: #fff;
+}
+
+.waves {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	z-index: -1;
+}
+.waves img {
+	min-width: 100%;
+	max-width: 100%;
+	height: 255px;
+}
+#home-hero .searchBtn {
+	margin-top: 10px;
+	background-color: #80CBC4;
+	height: 55px;
+    width: 55px;
+    border-radius: 100%;
+    padding: 0;
+}
+#home-hero .searchBtn img {
+	width: 22px;
+}
+
+@media only screen and (max-width: 40em) {
+	.heading {
+		/*margin-top: 50% !important;*/
+	}
+
+	.heading,
+	.searchForm {
+	    width: 90%;
+	    margin:0 auto;
+	}
+	.waves img {
+	    min-width: 100%;
+	    max-width: 100%;
+	    height: auto;
+	}
+
+ } /* max-width 640px, mobile-only styles, use when QAing mobile issues */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+
+

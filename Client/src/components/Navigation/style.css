@@ -1,0 +1,85 @@
+.navbar {
+    position: absolute;
+    width: 100%;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    padding-top: 15px;
+    z-index: 99;
+}
+
+.navbar-brand {
+	padding-top: 0;
+}
+
+.navbar-brand img {
+    height: 30px;
+}
+
+.navbar-default .navbar-nav>li>a{
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 2px;
+	margin-right: 10px;
+	margin-left: 10px;
+	padding: 8px 22px;
+}
+.navbar-default .navbar-nav>li>a:hover {
+	color: #fff;
+}
+@media only screen and (max-width: 40em) {
+	.navbar-brand {
+	    padding-top: 16px;
+	}
+
+	.navbar-default .navbar-nav>li>a{
+		margin: 20px;
+	}
+
+	.navbar-default .navbar-collapse {
+		background-color: rgba(255,255,255,.6);
+		border-top: 1px solid #fff;
+		border-bottom: 1px solid #fff;
+	}
+
+	.navbar-default .navbar-toggle {
+	    border:1px solid transparent;
+	}
+
+	.navbar-default .navbar-toggle:hover,
+	.navbar-default .navbar-toggle:focus,
+	.navbar-default .navbar-toggle:active {
+	    border:1px solid #80CBC4;
+	    background-color: transparent;
+	}
+
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: #fff;
+		height: 1px;
+	}
+
+} /* max-width 640px, mobile-only styles, use when QAing mobile issues */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+	/*.navbar-default .navbar-collapse {
+		background-color: rgba(255,255,255,.6);
+		border-top: 1px solid #fff;
+		border-bottom: 1px solid #fff;
+	}*/
+
+	.navbar-default .navbar-toggle {
+	    border:1px solid transparent;
+	}
+
+	.navbar-default .navbar-toggle:hover,
+	.navbar-default .navbar-toggle:focus,
+	.navbar-default .navbar-toggle:active {
+	    border:1px solid #80CBC4;
+	    background-color: transparent;
+	}
+
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: #fff;
+		height: 1px;
+	}
+} /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */

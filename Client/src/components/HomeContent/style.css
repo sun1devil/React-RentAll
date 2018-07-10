@@ -1,0 +1,113 @@
+#how-it-works {
+	margin-bottom: 5%;
+}
+#how-it-works h3 {
+	margin-bottom: 40px;
+}
+#how-it-works a {
+	text-transform: uppercase;
+	text-decoration: underline;
+	color: #009688;
+	margin-top: 20px;
+}
+.hiw-text {
+	margin-bottom: 20px;
+}
+.bk-green {
+	background-color: #185E53;
+	/*padding: 5% 10%;*/
+	min-height: 250px;
+	color: #fff;
+	font-weight: 300;
+}
+.about-left {
+	z-index: 5;
+	padding: 2% 1%;
+}
+.about-left img{
+	float: right;
+	height: 165px;
+}
+.about-right {
+	float: right;
+	margin-top: -285px;
+	padding: 4% 9% 3%;
+}
+.home-txt {
+	height: 125px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+.home-txt-first {
+	border-right: 1px solid #091F1C;
+}
+.home-txt-last {
+	border-left: 1px solid #091F1C;
+}
+#reviews {
+	margin: 40px 0;
+}
+#reviews h3 {
+	margin-top: 20%;
+}
+@media only screen and (max-width: 40em) {
+	.bk-green {
+		min-height: auto;
+	}
+	.about-left {
+		z-index: 0;
+		padding: 3% 10% 0;
+		text-align: center;
+	}
+	.about-left img{
+		float: none;
+		height: 125px;
+	}
+	.about-right {
+		float: left;
+		margin-top: 0;
+		padding: 0 10% 3%;
+	}
+	.home-txt-first {
+		border-right: none;
+		border-top: none;
+	}
+	.home-txt-last {
+		border-left:none;
+		border-top: none;
+	}
+	#reviews h3 {
+		margin-top: 5%;
+	}
+}
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+	.bk-green {
+		min-height: auto;
+	}
+	.about-left {
+		z-index: 0;
+		padding: 3% 10% 0;
+		text-align: center;
+	}
+	.about-left img{
+		float: none;
+		height: 125px;
+	}
+	.about-right {
+		float: left;
+		margin-top: 0;
+		padding: 0 10% 3%;
+	}
+	.home-txt-first {
+		border-right: none;
+		border-top: none;
+	}
+	.home-txt-last {
+		border-left: none;
+		border-top: none;
+	}
+	#reviews h3 {
+		margin-top: 5%;
+	}
+
+} /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */

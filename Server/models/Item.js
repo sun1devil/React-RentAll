@@ -83,7 +83,7 @@ module.exports = function(sequelize, DataTypes){
 
     Items.associate = function(models){
         Items.belongsTo(models.User, {
-            foreignKey: "UserUUID"
+            foreignKey: "userUUID"
         });
     }
 

@@ -8,6 +8,7 @@ const NoMatch = () => (
             🙄
         </span>
         </h1>
+        <a href="/">take me back home</a>
     </div>
 );
 

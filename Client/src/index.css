@@ -1,5 +1,60 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 1px;
+	min-height: 100vh;
+	font-weight: 400;
+	color: #091F1C;
+	background-color: #EAECEC;
 }
+
+p {
+	font-weight: 300;
+}
+h3,
+h4 {
+	text-transform: uppercase;
+}
+h4 {
+	font-weight: 400;
+}
+.light-btn {
+  	background-color: #80CBC4;	/* #92CBC5;*/
+}
+
+.dark-btn {
+  	background-color: #009688;
+}
+
+.btn {
+	border-radius: 3px;
+	padding: 8px 22px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
+	text-transform: uppercase;
+	font-weight: 400;
+	color:#fff;
+}
+.btn:hover{
+	color:#fff;
+}
+input {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
+    border-radius: 3px;
+    padding: 8px;
+    text-transform: uppercase;
+    margin: 10px 0;
+    border: 1px solid #297f71;
+}
+/*font-family: 'Monoton', cursive;*/
+
+@media only screen and (max-width: 40em) {
+	h1 {
+		font-size: 32px;
+	}
+
+
+} /* max-width 640px, mobile-only styles, use when QAing mobile issues */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+

@@ -22,7 +22,6 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 isEmail: true,
                 min: 4,
-                notNull:true,
                 notEmpty:true
             }
         },
@@ -32,7 +31,6 @@ module.exports = function(sequelize, DataTypes) {
             required: true,
             validate: {
                 min:6,
-                notNull:true,
                 notEmpty:true
             }
         },
@@ -61,7 +59,22 @@ module.exports = function(sequelize, DataTypes) {
 
     User.associate = function(models){
         User.hasMany(models.Rentals, {
-            foreignKey: "rentalUUID"
+            foreignKey: "rentalUUID",
+            onDelete: "cascade"
+        });
+    };
+
+    User.associate = function(models){
+        User.hasOne(models.Account, {
+            foreignKey: "accountUUID",
+            onDelete: "cascade"
+        });
+    };
+
+    User.associate = function(models){
+        User.hasOne(models.StripeCustomer, {
+            foreignKey: "stripeCustomerUUID",
+            onDelete: "cascade"
         });
     };
 

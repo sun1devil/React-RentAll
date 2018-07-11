@@ -21,8 +21,7 @@ module.exports = function(sequelize, DataTypes) {
             isUnique :true,
             validate: {
                 isEmail: true,
-                min: 4,
-                notEmpty:true
+                min: 2,
             }
         },
 
@@ -31,7 +30,6 @@ module.exports = function(sequelize, DataTypes) {
             required: true,
             validate: {
                 min:6,
-                notEmpty:true
             }
         },
 

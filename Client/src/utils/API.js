@@ -55,5 +55,29 @@ export default {
 			      credentials: 'include',
 			      mode: 'cors'
 			    });
+	},
+	createAccount: function(data){
+		return fetch("http://localhost:8000/api/account", {
+			        method: 'POST',
+			        body: JSON.stringify(data),
+			        headers: {
+			            "Content-Type": "application/json; charset=utf-8",
+			            // "Content-Type": "application/x-www-form-urlencoded",
+			        },
+			        credentials: 'include',
+			        mode: 'cors'
+			    });
+	},
+	updateAccount: function(data){
+		return fetch("http://localhost:8000/api/account", {
+			        method: 'PUT',
+			        body: JSON.stringify(data),
+			        headers: {
+			            "Content-Type": "application/json; charset=utf-8",
+			            // "Content-Type": "application/x-www-form-urlencoded",
+			        },
+			        credentials: 'include',
+			        mode: 'cors'
+			    });
 	}
 }

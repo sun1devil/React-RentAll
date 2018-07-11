@@ -1,7 +1,6 @@
 #home-hero{
 	min-height: 100vh;
 	position: relative;
-	background: linear-gradient(#208373,#1C7365,#165B50,#124D44,#0A2E28,#082520);
 	z-index: 0;
 	overflow-x: hidden;
 }

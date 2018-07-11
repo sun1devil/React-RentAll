@@ -10,8 +10,7 @@ router.route("/all")
 router.route("/")
 	.get(accountController.findById)
   	.post(accountController.create)
-
-  // .put(accountController.update)
+  	.put(accountController.update)
   // .delete(accountController.remove);
 
 

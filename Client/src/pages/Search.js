@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { withRouter } from "react-router-dom";
 
-// import Items from "../components/Items";
+import Items from "../components/Items";
 import SideNav from "../components/SideNav";
 
 class Search extends Component {
@@ -84,11 +84,11 @@ class Search extends Component {
     if(this.state.results.length === 0){
         return(<h1>NO RESULTS</h1>);
     }
-    // else{
-    //     return(
-    //        <Items results={this.state.results} />
-    //     )
-    // }
+    else{
+        return(
+           <Items results={this.state.results} />
+        )
+    }
   }
 
   // callback for side nav to update state the user input from the search component

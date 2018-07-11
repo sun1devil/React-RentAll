@@ -11,7 +11,7 @@ class Search extends Component {
      this.state = {
       searchLocation: "",
       searchItem: "",
-      reults: [
+      results: [
         {
           category:"pet",
           description: "a cute cuddly cat",
@@ -123,7 +123,7 @@ class Search extends Component {
     render(){
         console.log(this.state);
         return(
-            <div>
+            <div id="search-content" className="gradient">
               <SideNav handleSideNavSearch={this.handleSideNavSearch.bind(this)}/>
               {this.searchContent()}
             </div>

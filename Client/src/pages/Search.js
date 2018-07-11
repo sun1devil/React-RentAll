@@ -96,10 +96,10 @@ class Search extends Component {
     // update state with side nav search results
     console.log("side nav search", searchLocation, searchItem);
     // set state to the search inputs from side nav search
-     this.setState({
-        searchLocation: searchLocation,
-        searchItem: searchItem
-    })
+    //  this.setState({
+    //     searchLocation: searchLocation,
+    //     searchItem: searchItem
+    // })
       // this.getItems(date)
   }
 

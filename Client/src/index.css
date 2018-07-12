@@ -9,7 +9,6 @@ body {
 	color: #091F1C;
 	background-color: #EAECEC;
 }
-
 p {
 	font-weight: 300;
 }
@@ -39,7 +38,18 @@ h4 {
 .btn:hover{
 	color:#fff;
 }
-input {
+.round {
+	margin-top: 10px;
+	background-color: #80CBC4;
+	height: 55px;
+    width: 55px;
+    border-radius: 100%;
+    padding: 0;
+}
+.round img {
+	width: 22px;
+}
+input, .form-control {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
     border-radius: 3px;
     padding: 8px;
@@ -47,14 +57,31 @@ input {
     margin: 10px 0;
     border: 1px solid #297f71;
 }
+
+label {
+	text-transform: uppercase;
+	font-weight: 500;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	margin-top: 20px;
+	color: #fff;
+}
+
+
 /*font-family: 'Monoton', cursive;*/
 
+.gradient {
+	background: linear-gradient(#208373,#1C7365,#165B50,#124D44,#0A2E28,#082520);
+}
+
+#search {
+	padding-top: 10%;
+	min-height: 100vh;
+}
 @media only screen and (max-width: 40em) {
 	h1 {
 		font-size: 32px;
 	}
-
-
 } /* max-width 640px, mobile-only styles, use when QAing mobile issues */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
 

@@ -13,29 +13,12 @@ import React from "react";
 // };
 
 class Test extends React.Component {
-//   state = {
-//     countries: ['ES-es', 'TH-th']
-//   }
 
-//   handleChange = (value) => {
-//     this.setState({countries: value});
-//   };
-
-//   render () {
-//     return (
-//       <Autocomplete
-//         direction="down"
-//         selectedPosition="above"
-//         label="Choose countries"
-//         onChange={this.handleChange}
-//         source={source}
-//         value={this.state.countries}
-//       />
-//     );
-//   }
-// }
-//     </div>
-// );
+ 	render(){
+ 		return(
+ 			<p>{this.props.description}</p>
+ 		)
+ 	}
 }
 
 export default Test;

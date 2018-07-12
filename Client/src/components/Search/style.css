@@ -1,2 +1,26 @@
+#search-wrap div
+.react-autosuggest__container
+.react-autosuggest__container--open {
+	position: relative !important;
+}
+#search-wrap #react-autowhatever-autosuggest.react-autosuggest__suggestions-container .react-autosuggest__suggestions-container--open {
+	color: #fff !important;
+    background: rgba(37,124,110,.8) !important;
+    padding: 10px 0px !important;
+    text-align: left !important;
+    position: absolute !important;
+    top: 48px !important;
+    width: 100% !important;
+    text-transform: uppercase !important;
+}
+#search-wrap.react-autosuggest__suggestions-list {
+	padding: 0 10px !important;
+}
+#search-wrap.react-autosuggest__suggestion .react-autosuggest__suggestion--first {
+	list-style-type: none !important;
+}
+
+
+
 @media only screen and (max-width: 40em) { } /* max-width 640px, mobile-only styles, use when QAing mobile issues */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */

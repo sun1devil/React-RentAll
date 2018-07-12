@@ -10,6 +10,7 @@ const passport     = require('passport');
 const flash        = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const session      = require('express-session'); // cookie session
+const fileUpload = require('express-fileupload');
 
 const app  = express();
 const PORT = process.env.PORT || 8000;
@@ -26,7 +27,7 @@ require('./config/passport')(passport); // pass passport for configuration
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(fileUpload());
 
 // Enable CORS so that browsers don't block requests.
 app.use((req, res, next) => {

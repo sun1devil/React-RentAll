@@ -14,12 +14,14 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
+    // associations ======================
+
     Rental.associate = function(models){
-        Rental.belongsTo(models.Accounts, {foreignKey: "renterUUID"});
+        Rental.belongsTo(models.User, {foreignKey: "userUUID"});
     }
 
      Rental.associate = function(models){
-        Rental.belongsTo(models.Items, {foreignKey: "itemsUUID"});
+        Rental.belongsTo(models.Item, {foreignKey: "itemUUID"});
     }
 
     return Rental;

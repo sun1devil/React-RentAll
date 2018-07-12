@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import HomeHero from "../components/HomeHero";
 import HomeContent from "../components/HomeContent";
 

@@ -1,7 +1,6 @@
 #home-hero{
 	min-height: 100vh;
 	position: relative;
-	background: linear-gradient(#208373,#1C7365,#165B50,#124D44,#0A2E28,#082520);
 	z-index: 0;
 	overflow-x: hidden;
 }
@@ -47,17 +46,7 @@
 	max-width: 100%;
 	height: 255px;
 }
-#home-hero .searchBtn {
-	margin-top: 10px;
-	background-color: #80CBC4;
-	height: 55px;
-    width: 55px;
-    border-radius: 100%;
-    padding: 0;
-}
-#home-hero .searchBtn img {
-	width: 22px;
-}
+
 
 @media only screen and (max-width: 40em) {
 	.heading {

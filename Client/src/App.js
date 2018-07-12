@@ -92,7 +92,7 @@ class App extends React.Component {
   // create a function that will update the browser url to "/" when the href is equal to "/account"
   // update only when user is not logged in
   updatePath(){
-    if(window.location.pathname == "/account"){
+    if(window.location.pathname === "/account"){
       window.location.replace("http://localhost:3000");
     }
   }
@@ -141,6 +141,10 @@ class App extends React.Component {
               <Route exact path="/home" component={Home} />
 
               <Route exact path="/about" component={About} />
+
+              <Route exact path="/search" component={Search} />
+
+              <Route exact path="/account" component={Home} />
 
               <Route component={NoMatch} />
 

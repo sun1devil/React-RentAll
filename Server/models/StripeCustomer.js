@@ -13,14 +13,10 @@ module.exports = function(sequelize, DataTypes) {
 
         customer_id: {
             type: DataTypes.STRING,
-        },
-
-        lastFour: {
-            type: DataTypes.STRING,
         }
     });
 
-    // methods ======================
+   // associations ======================
 
     StripeCustomer.associate = function(models){
         StripeCustomer.belongsTo(models.User, {

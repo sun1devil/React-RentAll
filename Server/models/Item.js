@@ -2,7 +2,7 @@ var uuidv1  = require('uuid/v1');
 var Sequelize = require("sequelize");
 
 module.exports = function(sequelize, DataTypes){
-    var Items = sequelize.define("Items",{
+    var Item = sequelize.define("Item",{
 
         uuid: {
             primaryKey: true,
@@ -10,68 +10,22 @@ module.exports = function(sequelize, DataTypes){
             defaultValue: DataTypes.UUIDV1,
             isUnique :true
         },
-
-        name: {
+        category: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                min: 1,
-                notNull:true,
-                notEmpty:true
-
-            }
         },
-
         description: {
             type: DataTypes.TEXT,
             allowNull: false,
-            validate:{
-                min: 1,
-                notNull:true,
-                notEmpty:true
-            }
         },
-
         price: {
             type: DataTypes.DECIMAL(8,2),
             allowNull: false
         },
-
-        rate: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate:{
-                min: 1,
-                notNull:true,
-                notEmpty:true
-            }
-        },
-
-        start_date: {
-            type: DataTypes.DATEONLY,
-            allowNull: false
-        },
-
-        end_date: {
-            type: DataTypes.DATEONLY,
-            allowNull: false
-        },
-
-        image: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                min: 1,
-                notNull:true,
-                notEmpty:true
-            }
-        },
-
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
         },
-
         featured: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
@@ -81,17 +35,31 @@ module.exports = function(sequelize, DataTypes){
 
     });
 
-    Items.associate = function(models){
-        Items.belongsTo(models.User, {
+    // associations ======================
+
+    Item.associate = function(models){
+        Item.belongsTo(models.User, {
             foreignKey: "userUUID"
         });
     }
 
-    // Items.associate = function(models){
-    //     Items.hasMany(models.Rental, {
-    //         foreignKey: "rental_id"
-    //     });
-    // }
+    Item.associate = function(models){
+        Item.hasMany(models.Rental, {
+            foreignKey: "rentalUUID"
+        });
+    }
 
-    return Items;
+    Item.associate = function(models){
+        Item.hasMany(models.Availability, {
+            foreignKey: "AvailabilityUUID"
+        });
+    }
+
+    Item.associate = function(models){
+        Item.belongsTo(models.Category, {
+            foreignKey: "categoryUUID"
+        });
+    };
+
+    return Item;
 }

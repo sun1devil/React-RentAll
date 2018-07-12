@@ -3,78 +3,61 @@ var uuidv1  = require('uuid/v1');
 
 module.exports = function(sequelize, DataTypes) {
     var Account = sequelize.define("Account", {
-
         uuid: {
-          primaryKey: true,
-          type: DataTypes.UUID,
-          defaultValue: DataTypes.UUIDV1,
-          isUnique :true
+            primaryKey: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
+            isUnique :true
         },
-        first_name: {
+        name: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                is:["^[a-z]+$",'i'],
-                min:1,
-                notEmpty:true
-            }
-        },
-        last_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                is:["^[a-z]+$",'i'],
-                min:1,
-                notEmpty:true
-            }
+            allowNull: false
         },
         street: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                min: 1,
-                notEmpty:true
-            }
+            allowNull: false
         },
         city: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                min:1,
-                notEmpty:true
-            }
+            allowNull: false
         },
         state: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                is:["^[a-z]+$",'i'],
-                min: 1,
-                notEmpty:true
-            }
+            allowNull: false
+        },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         zip: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isInt: true,
-                not: ["[a-z]",'i'],
-                min: 1,
-                notEmpty:true
-            }
+            type: DataTypes.STRING,
+            allowNull: false
         },
         phone: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                isInt: true,
-                not: ["[a-z]",'i'],
-                len: [10],
-                notEmpty:true
-            }
+            allowNull: false
+        },
+        lat: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        lng: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        lastFour: {
+            type: DataTypes.STRING,
+            allowNull: false
+
+        },
+        cardExpire: {
+            type: DataTypes.STRING,
+            allowNull: false
+
         }
     });
-    // methods ======================
+
+    // associations ======================
 
     Account.associate = function(models){
         Account.belongsTo(models.User, {

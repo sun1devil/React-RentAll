@@ -1,10 +1,55 @@
-curl -d '{"email":"amber@test.com", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/signup
+url -d '{"name":"party & events", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-curl -d '{"email":"amber@test.com", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/signin
+url -d '{"name":"kids & babies", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"cleaning", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"cooking", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"crafts", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"photography & film", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"office", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"storage", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"travel", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"home", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"music", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"recreation", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"transportaion", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"appliance", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"tools", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"yard & gardening", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"electronics", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"misc", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"apparel", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"sporting goods", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"furniture", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+
+url -d '{"name":"camping", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
 
-curl http://localhost:8000/api/user/all
 
 
 
-curl -d '{"first_name":"Amber", "last_name": "Burroughs", "street": "185 channel street #213", "city": "san francisco", "state": "california", "zip": 94158, "phone": 4154299564, "userUUID":"38533280-7e9a-11e8-844d-f3710880d1aa"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/account
+
+
+
+
+
+
+

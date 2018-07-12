@@ -17,40 +17,51 @@ class Banner extends React.Component {
 	changePosition(){
 		// get all image and store in ana array
 		const bannerImg = document.querySelectorAll(".banner-item");
+		if(bannerImg.length>0){
+			const bannerLoop = setInterval(function(){
+			// loop through image array
+			bannerImg.forEach((elem)=>{
+				// console.log(elem);
+				// for each image
+				// getting the elements id and add a hash in front
+				const elemId = "#"+elem.id;
 
-		setInterval(function(){
-		// loop through image array
-		bannerImg.forEach((elem)=>{
-			// console.log(elem);
-			// for each image
-			// getting the elements id and add a hash in front
-			const elemId = "#"+elem.id;
-			// get the current elements current left position and converto to int (this come in as pixels)
-			const currentLeft = parseInt(window.getComputedStyle(document.querySelector(elemId)).left);
-			// add 1 pixel to the currentLeft integer
-			const plusOne = currentLeft+1
+				// to fix issue caused by history.push on homeHero redirect
+				// check if this element is on the page
+				// if its not stop the interval
+				if(document.querySelector(elemId) === null){
+					 clearInterval(bannerLoop);
+				}else{
+					// get the current elements current left position and converto to int (this come in as pixels)
+					const currentLeft = parseInt(window.getComputedStyle(document.querySelector(elemId)).left);
+					// add 1 pixel to the currentLeft integer
+					const plusOne = currentLeft+1
 
-			let newLeft;
+					let newLeft;
 
-			// if plusOne value is greater than the browser width
-			if(plusOne > window.innerWidth){
-				// position the image off screen on the left
-				newLeft = "-120px";
-			}else {
-				// continue to move image toward the right
-				// have to conver num back to a sting to add "px" to it
-				newLeft = plusOne.toString();
-				newLeft = newLeft + "px"
-			}
-			// take current elemetn and add new left postion styling
-			document.querySelector(elemId).style.left = newLeft
-		});
-		}, 40);
+					// if plusOne value is greater than the browser width
+					if(plusOne > window.innerWidth){
+						// position the image off screen on the left
+						newLeft = "-120px";
+					}else {
+						// continue to move image toward the right
+						// have to conver num back to a sting to add "px" to it
+						newLeft = plusOne.toString();
+						newLeft = newLeft + "px"
+					}
+					// take current elemetn and add new left postion styling
+					document.querySelector(elemId).style.left = newLeft
+
+				}
+
+			});
+			}, 40);
+		}
 
 	}
 
 	render(){
-		console.log(this.state.bannerItems)
+		// console.log(this.state.bannerItems)
 
 		return(
 			<div id="banner" className="clearfix" align="center">

@@ -21,8 +21,7 @@ module.exports = function(sequelize, DataTypes) {
             isUnique :true,
             validate: {
                 isEmail: true,
-                min: 4,
-                notEmpty:true
+                min: 2,
             }
         },
 
@@ -31,7 +30,6 @@ module.exports = function(sequelize, DataTypes) {
             required: true,
             validate: {
                 min:6,
-                notEmpty:true
             }
         },
 
@@ -39,6 +37,7 @@ module.exports = function(sequelize, DataTypes) {
         updatedAt: Sequelize.DATE
 
     });
+
     // methods ======================
       // generating a hash
       User.generateHash = function(password) {
@@ -50,15 +49,17 @@ module.exports = function(sequelize, DataTypes) {
           return bcrypt.compareSync(password, this.local_pw);
       };
 
+    // associations ======================
+
     User.associate = function(models){
-        User.hasMany(models.Items, {
-            foreignKey: "ownerUUID",
+        User.hasMany(models.Item, {
+            foreignKey: "itemUUID",
             onDelete: "cascade"
         });
     };
 
     User.associate = function(models){
-        User.hasMany(models.Rentals, {
+        User.hasMany(models.Rental, {
             foreignKey: "rentalUUID",
             onDelete: "cascade"
         });

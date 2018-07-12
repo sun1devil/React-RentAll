@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./style.css";
 
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
@@ -7,7 +7,6 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import API from "../../utils/API";
 
 import Popup from '../Popup';
-
 import PostForm from '../PostForm';
 
 class Navigation extends React.Component {
@@ -114,8 +113,8 @@ class Navigation extends React.Component {
 	handlelogout(){
 	    API.handlelogout()
 	    .then(data => {return data.json()})
-	    .then(json=>{
-	      // console.log(json);
+	    .then(jsonObj=>{
+	      // console.log(jsonObj);
 	    	this.props.isAuthenicated();
 	    	window.location.pathname = "/";
 	    })
@@ -139,7 +138,11 @@ class Navigation extends React.Component {
 	// else call signup API function
 	handleLoginSubmit(e){
 
-		e.preventDefault();
+		const parentForm = e.target.closest('form');
+
+	    if (!parentForm.checkValidity()) return;
+
+	    e.preventDefault();
 
 		const selectedSubmit = e.target.textContent.toLowerCase();
 
@@ -163,7 +166,7 @@ class Navigation extends React.Component {
 	handleLoginSignUp(apiType, user){
 		apiType(user)
 		.then(data => {return data.json()})
-		.then(json=>{
+		.then(jsonObj=>{
 			// close modal
 			this.handleClose();
 			// update app.js state for islogged in
@@ -181,16 +184,16 @@ class Navigation extends React.Component {
 		if(this.state.selectedBtn === "signup"){
 			return(<form>
 					<h2>SIGNUP NOW!</h2>
-					<input type="email" placeholder="your@email.com" id="user-email"/>
-					<input type="password" placeholder="6 character password" id="user-pw"/>
+					<input type="email" placeholder="your@email.com" id="user-email" required />
+					<input type="password" placeholder="6 character password" id="user-pw" required min="6"/>
 					<button onClick={this.handleLoginSubmit.bind(this)} className="btn dark-btn">Signup</button>
 				</form>);
 		}
 		else if(this.state.selectedBtn === "signin"){
 			return(<form>
 				<h2>SIGNIN NOW!</h2>
-				<input type="email" placeholder="your@email.com" id="user-email"/>
-				<input type="password" placeholder="6 character password" id="user-pw" />
+				<input type="email" placeholder="your@email.com" id="user-email" required />
+				<input type="password" placeholder="6 character password" id="user-pw" required min="6" />
 				<button onClick={this.handleLoginSubmit.bind(this)} className="btn dark-btn">SignIn</button>
 			</form>);
 		}else if(this.state.selectedBtn === "post") {

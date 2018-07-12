@@ -21,7 +21,7 @@ class HomeHero extends React.Component {
 
 	render(){
 		return(
-			<div id="home-hero" className="gradient" align="center">
+			<div id="home-hero" align="center">
 				<Banner/>
 				<div className="heading"><h1>WHY BUY IT WHEN  YOU CAN RENT IT?</h1></div>
 				<div className="searchForm">

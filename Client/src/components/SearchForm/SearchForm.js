@@ -15,4 +15,4 @@ import "./style.css";
 
 
 
-export default PaymentForm;
+export default SearchForm;

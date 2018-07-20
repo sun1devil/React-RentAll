@@ -45,7 +45,7 @@ class ItemCalendar extends React.Component {
 				      onSelect={this.props.grabDates}
               disabledDates={this.state.days}
               min={new Date()}
-              max={new Date(2018,9,31)}
+              max={new Date(2018,9,30)}
               height={250}/>
             </div>
         );

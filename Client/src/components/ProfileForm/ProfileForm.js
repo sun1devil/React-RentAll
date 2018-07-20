@@ -48,7 +48,8 @@ class ProfileForm extends React.Component {
 	}
 
 	componentDidMount(){
-		if(this.props.initailState.street.length >0){
+		console.log(this.props)
+		if(this.props.initailState.street.length > 0){
 			this.setState({
 				address: `${this.props.initailState.street},${this.props.initailState.city},${this.props.initailState.state}, ${this.props.initailState.country}`,
 			})

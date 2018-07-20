@@ -30,7 +30,7 @@ class Account extends React.Component {
 	}
 
 	// before first render get all the users account info
-	componentWillMount(){
+	componentDidMount(){
 		this.getUserAccount();
 	}
 

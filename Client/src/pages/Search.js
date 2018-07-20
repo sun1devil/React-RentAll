@@ -42,7 +42,7 @@ class Search extends Component {
   }
 
   //for server side code
-  componentWillMount() {
+  componentDidMount() {
     if(this.props.location.state){
 
       const searchLocation = this.parseLocation(this.props.location.state.searchLocation);

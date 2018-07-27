@@ -43,7 +43,7 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // },
   findById: function(req, res) {
-
+    console.log("hit")
     if(req.isAuthenticated()){
        db.Account
         .findOne({
@@ -94,11 +94,10 @@ module.exports = {
       }
       const token = req.body.stripeToken.id
 
-    db.Account
-      .create(account)
+     if(req.isAuthenticated()){
+      db.Account.create(account)
       .then(dbaccount => {
         // console.log("create", dbaccount)
-
         stripe.customers.create({
           metadata: {
             userUUID: req.session.passport.user,
@@ -111,20 +110,21 @@ module.exports = {
           if(err){
             console.log("err", err)
           }
-
           db.StripeCustomer
           .create({customer_id:customer.id, userUUID: req.session.passport.user})
           .then(dbSC=>{
-            console.log("dbSC", dbSC)
+            // console.log("dbSC", dbSC)
+            res.json(true)
           })
-
           // asynchronously called
         });
 
-        // res.json(dbaccount)
       })
       .catch(err => console.log("err", err));
       //res.status(422).json(err)
+    }
+    }else {
+      res.status(422).json(err)
     }
   },
   update: function(req, res) {

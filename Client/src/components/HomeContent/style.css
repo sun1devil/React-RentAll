@@ -1,3 +1,7 @@
+#home-content{
+	background-color: #eaecec;
+}
+
 #how-it-works {
 	margin-bottom: 5%;
 }
@@ -49,6 +53,25 @@
 }
 #reviews h3 {
 	margin-top: 20%;
+}
+.slide-wrap {
+	position: relative;
+	margin: 0 10%;
+}
+.carousel {
+    position: absolute;
+    top: 0;
+    margin: 0 14%;
+}
+.carousel-indicators {
+	bottom: -120px;
+}
+.carousel-indicators .active {
+	background-color: #1c5d53;
+	border-color: #1c5d53;
+}
+.carousel-indicators li {
+	border-color: #257b6d;
 }
 @media only screen and (max-width: 40em) {
 	.bk-green {

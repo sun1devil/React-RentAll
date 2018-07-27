@@ -35,12 +35,12 @@ class ProfileForm extends React.Component {
 
 	state = {
 		name: this.props.initailState.name,
-    	street: this.props.initailState.street,
-    	city:this.props.initailState.city,
-    	state: this.props.initailState.state,
-    	zip: this.props.initailState.zip,
-    	country: this.props.initailState.country,
-    	phone: this.props.initailState.phone,
+		street: this.props.initailState.street,
+		city:this.props.initailState.city,
+		state: this.props.initailState.state,
+		zip: this.props.initailState.zip,
+		country: this.props.initailState.country,
+		phone: this.props.initailState.phone,
 		complete: false,
 		address: '',
 		addressArray:[],

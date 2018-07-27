@@ -1,55 +1,43 @@
-url -d '{"name":"party & events", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"party & events"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"kids & babies", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"kids & babies"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"cleaning", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"cleaning"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"cooking", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"cooking"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"crafts", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"crafts"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"photography & film", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"photography & film"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"office", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"office"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"storage", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"storage"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"travel", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"travel"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"home", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"home"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"music", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"music"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"recreation", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"recreation"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"transportaion", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"transportaion"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"appliance", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"appliance"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"tools", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"tools"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"yard & gardening", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"yard & gardening"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"electronics", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"electronics"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"misc", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"misc"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"apparel", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"apparel"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"sporting goods", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"sporting goods"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"furniture", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
+curl -d '{"name":"furniture"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
 
-url -d '{"name":"camping", "local_pw":"password123"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8
-
-
-
-
-
-
-
-
-
-
-
-
+curl -d '{"name":"camping"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/category/rtyhj456fghjki87ytgbnjki8

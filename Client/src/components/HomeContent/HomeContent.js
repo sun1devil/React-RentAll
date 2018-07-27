@@ -2,7 +2,7 @@ import React from "react";
 
 import "./style.css";
 
-import { Grid, Row, Col} from 'react-bootstrap';
+import { Grid, Row, Col, Carousel} from 'react-bootstrap';
 
 class HomeContent extends React.Component {
 	render(){
@@ -69,7 +69,30 @@ class HomeContent extends React.Component {
 							<h3>What OUR Customers Are Saying:</h3>
 						</Col>
 						<Col xs={12} sm={12} md={6}>
-							<img src="./assets/img/chat.png" alt="speech bubble"/>
+							<div className="slide-wrap">
+								<img src="./assets/img/chat.png" alt="speech bubble"/>
+								<Carousel controls={false}>
+								  <Carousel.Item>
+
+								      <h3>This app is fire!</h3>
+								      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+								      <br/>
+								      <p>Jane Doe.</p>
+								  </Carousel.Item>
+								  <Carousel.Item>
+								  		<h3>I LOVE RENTING</h3>
+								      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+								      <br/>
+								      <p>John Doe.</p>
+								  </Carousel.Item>
+								  <Carousel.Item>
+								     <h3>Made extra cash</h3>
+								      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+								      <br/>
+								      <p>Jim Doe.</p>
+								  </Carousel.Item>
+								</Carousel>
+							</div>
 						</Col>
 					</Grid>
 				</section>

@@ -2,6 +2,8 @@ import React from "react";
 
 import ReactDOM from "react-dom";
 
+import Popup from '../Popup';
+
 // import { BrowserRouter as Router } from "react-router-dom";
 
 import {withRouter} from "react-router-dom";
@@ -20,6 +22,9 @@ class HomeHero extends React.Component {
 
 		this.searchPageResults = this.searchPageResults.bind(this);
 	}
+	state = {
+		modalShow: false
+	}
 
 	// send home page search form results to search page
 	searchPageResults(item, location, categoryID){
@@ -27,7 +32,6 @@ class HomeHero extends React.Component {
 		// what to send
 
 		if(item.length>0 || location.length>0){
-
 			this.props.history.push({
 			  pathname: '/search',
 			  state: {
@@ -37,10 +41,28 @@ class HomeHero extends React.Component {
 			  }
 			});
 		}else {
-			alert("please fill out form")
+			// alert("please fill out form")
+			this.setState({
+				modalShow: true
+			})
 		}
 
 	}
+
+	renderModalContent(){
+		return(
+			<div>
+				<h2>Whoops!</h2>
+				<h5 className="error">Please input at least one value when searching.</h5>
+				<img src="./assets/img/search.png" alt="search"/>
+				<p>Search by location, category or both!</p>
+			</div>
+		)
+	}
+
+	handleClose() {
+   		this.setState({ modalShow: false });
+  	}
 
 	render(){
 		return(
@@ -53,6 +75,10 @@ class HomeHero extends React.Component {
 				<div className="waves">
 					<img src="./assets/img/waves.png" alt="waves"/>
 				</div>
+
+				 <Popup modalShow={this.state.modalShow} handleClose={this.handleClose.bind(this)}>
+					{this.renderModalContent()}
+				</ Popup>
 			</div>
 		);
 	}

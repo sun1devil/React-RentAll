@@ -1,10 +1,10 @@
 import React from "react";
-import Test from "../components/Test";
+import AboutContent from "../components/AboutContent";
 
 
 const About = () => (
     <div>
-        <Test page="ABOUT"/>
+        <AboutContent/>
     </div>
 );
 

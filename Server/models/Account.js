@@ -61,7 +61,8 @@ module.exports = function(sequelize, DataTypes) {
 
     Account.associate = function(models){
         Account.belongsTo(models.User, {
-            foreignKey: "userUUID"
+            foreignKey: "userUUID",
+            onDelete: "cascade"
         });
     };
 

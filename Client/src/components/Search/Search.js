@@ -3,6 +3,7 @@ import "./style.css";
 
 // helper functions
 import API from "../../utils/API";
+import Popup from '../Popup';
 
 import Autosuggest from 'react-autosuggest';
 
@@ -43,6 +44,7 @@ class Search extends React.Component {
 		API.getCategories()
 		.then(data => {return data.json()})
 		.then(jsonObj=>{
+			console.log(jsonObj);
 			this.setState({
 				categories: jsonObj
 			});
@@ -141,7 +143,7 @@ class Search extends React.Component {
     };
     return (
     <div id="search-wrap">
-      	<Autosuggest id="autosuggest" suggestions={suggestions} onSuggestionsFetchRequested={this.onSuggestionsFetchRequested} onSuggestionsClearRequested={this.onSuggestionsClearRequested} getSuggestionValue={this.getSuggestionValue} renderSuggestion={this.renderSuggestion} inputProps={inputProps} />
+      	<Autosuggest id="autosuggest" suggestions={suggestions} onSuggestionsFetchRequested={this.onSuggestionsFetchRequested} onSuggestionsClearRequested={this.onSuggestionsClearRequested} getSuggestionValue={this.getSuggestionValue} renderSuggestion={this.renderSuggestion} inputProps={inputProps}/>
 
 		<PlacesAutocomplete
 			value={this.state.address}
@@ -158,6 +160,9 @@ class Search extends React.Component {
 	                  ? 'suggestion-item--active'
 	                  : 'suggestion-item';
 	                // inline style for demonstration purpose
+	                const style = suggestion.active
+		                  ? { backgroundColor: 'rgba(37,124,110,.5)', color:"#fff", cursor: 'pointer' }
+		                  : { backgroundColor: 'rgba(255,255,255,.5)', color:"#fff",cursor: 'pointer' };
 	                return (
 	                <div
 	                    {...getSuggestionItemProps(suggestion, {

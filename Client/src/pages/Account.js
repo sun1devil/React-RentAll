@@ -4,11 +4,15 @@ import React, { Component } from 'react';
 import AccountContent from "../components/AccountContent";
 import ProfileForm from "../components/ProfileForm";
 
+
 import {Elements, StripeProvider} from 'react-stripe-elements';
+
+import moment from "moment";
 
 // import { Tab, Row, Col} from 'react-bootstrap';
 
 import API from "../utils/API";
+
 
 class Account extends React.Component {
 
@@ -38,6 +42,8 @@ class Account extends React.Component {
 	// update state with user account info
 	// if there isn't data for the user account do nothing
 	getUserAccount(){
+		console.log("get account");
+
 		API.getUserAccount()
 		.then(data => {return data.json()})
 		.then(jsonObj => {
@@ -55,11 +61,10 @@ class Account extends React.Component {
 					phone: jsonObj.phone,
 					lastFour: jsonObj.lastFour,
 					cardExpire: jsonObj.cardExpire,
-					createdAt: jsonObj.createdAt,
+					createdAt: moment(jsonObj.createdAt).format("M/DD/YYYY"),
 					hasData: true,
 					showForm: false
 				});
-
 			}
 		})
 	  	.catch(err => console.log("err",err));
@@ -79,6 +84,14 @@ class Account extends React.Component {
 		})
 	}
 
+	deleteAccount(){
+		API.deleteAccount()
+		.then(data => {return data.json()})
+		.then(jsonObj => {
+			window.location.pathname = "/"
+		})
+		.catch(err => console.log("err",err));
+	}
 
 	// conditional rendering
 	// if there is user account data
@@ -89,13 +102,15 @@ class Account extends React.Component {
 	renderAccountProfile(){
 		if(!this.state.showForm){
 			return(
-				<div>
+				<div id="account-details" align="center">
+					<h2>account details</h2>
 					<p>{this.state.name}</p>
 					<p>{this.state.street}, {this.state.city}, {this.state.state}, {this.state.zip}, {this.state.country}</p>
 					<p>{this.state.phone}</p>
 					<p>{this.state.lastFour} {this.state.cardExpire}</p>
 					<p>{this.state.createdAt}</p>
 					<button onClick={this.updateForm.bind(this)} className="light-btn btn">update</button>
+					<button onClick={this.deleteAccount.bind(this)} className="dark-btn btn">delete</button>
 				</div>
 			);
 		}else if(this.state.showForm){

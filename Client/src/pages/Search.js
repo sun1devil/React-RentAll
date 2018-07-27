@@ -8,6 +8,7 @@ import SideNav from "../components/SideNav";
 // helper functions
 import API from "../utils/API";
 
+import { Grid, Row, Col } from 'react-bootstrap';
 
 class Search extends Component {
   constructor(props){
@@ -16,33 +17,12 @@ class Search extends Component {
       searchLocation: "",
       searchItem: "",
       categoryID: "",
-      results: [
-        {
-          category:"pet",
-          description: "a cute cuddly cat",
-          price: 50,
-          image: "cat",
-          feature: true,
-          UUID: "66584723o8jbvdkjs734iukj",
-          availability:  ["2018/07/11", "2018/07/12", "2018/07/13", "2018/07/14", "2018/07/15", "2018/07/16"],
-          disabled:[new Date(2018,7,11)]
-        },
-        {
-          category:"pet",
-          description: "a cute cuddly kitten",
-          price: 40,
-          image: "cat1",
-          feature: true,
-          UUID: "45678iuygfcdvbnmghjukjhgftyh",
-          availability:  ["2018/07/17", "2018/07/18", "2018/07/19", "2018/07/20", "2018/07/21", "2018/07/22"],
-          disabled:[]
-        }
-      ]
+      results:[]
     }
   }
 
   //for server side code
-  componentDidMount() {
+  componentWillMount() {
     if(this.props.location.state){
 
       const searchLocation = this.parseLocation(this.props.location.state.searchLocation);
@@ -70,12 +50,11 @@ class Search extends Component {
     .then(data => {return data.json()})
     .then(jsonObj=>{
       console.log("db items", jsonObj)
-      if(jsonObj.isArray){
+      console.log(jsonObj);
+
         this.setState({
           results: jsonObj
         })
-      }
-      alert("Oh no something went wrong! Try searching again.")
 
     })
      .catch(err=> console.log("err",err));
@@ -113,8 +92,16 @@ class Search extends Component {
 
     return(
         <div id="search" className="gradient">
+        <Grid fluid={true}>
+        <Row>
+        <Col xs={12} sm={12} md={3}>
           <SideNav handleSideNavSearch={this.handleSideNavSearch.bind(this)}/>
-          <div className="search-content" align="center">{this.searchContent()}</div>
+        </Col>
+        <Col xs={12} sm={12} md={9}>
+          <div className="search-content">{this.searchContent()}</div>
+        </Col>
+        </Row>
+        </Grid>
         </div>
     )
   }

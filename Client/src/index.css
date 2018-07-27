@@ -9,6 +9,7 @@ body {
 	color: #091F1C;
 	background-color: #EAECEC;
 }
+
 p {
 	font-weight: 300;
 }
@@ -38,6 +39,7 @@ h4 {
 .btn:hover{
 	color:#fff;
 }
+.btn:focus, .btn:active {outline:0;}
 .round {
 	margin-top: 10px;
 	background-color: #80CBC4;
@@ -49,7 +51,7 @@ h4 {
 .round img {
 	width: 22px;
 }
-input, .form-control {
+input, .form-control, .card-wrap {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
     border-radius: 3px;
     padding: 8px;
@@ -67,7 +69,6 @@ label {
 	color: #fff;
 }
 
-
 /*font-family: 'Monoton', cursive;*/
 
 .gradient {
@@ -77,6 +78,20 @@ label {
 #search {
 	padding-top: 10%;
 	min-height: 100vh;
+}
+.error {
+	color: #db2020;
+}
+
+#account-details p, #account-details h2 {
+	color: #fff;
+	text-transform: capitalize;
+}
+#account-details h2 {
+	text-transform: uppercase;
+}
+#account-details .btn {
+	margin: 5px;
 }
 @media only screen and (max-width: 40em) {
 	h1 {

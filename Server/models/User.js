@@ -51,33 +51,33 @@ module.exports = function(sequelize, DataTypes) {
 
     // associations ======================
 
-    User.associate = function(models){
-        User.hasMany(models.Item, {
-            foreignKey: "itemUUID",
-            onDelete: "cascade"
-        });
-    };
+    // User.associate = function(models){
+    //     User.hasMany(models.Item, {
+    //         foreignKey: "itemUUID",
+    //         onDelete: "cascade"
+    //     });
+    // };
 
-    User.associate = function(models){
-        User.hasMany(models.Rental, {
-            foreignKey: "rentalUUID",
-            onDelete: "cascade"
-        });
-    };
+    // User.associate = function(models){
+    //     User.hasMany(models.Rental, {
+    //         foreignKey: "rentalUUID",
+    //         onDelete: "cascade"
+    //     });
+    // };
 
-    User.associate = function(models){
-        User.hasOne(models.Account, {
-            foreignKey: "accountUUID",
-            onDelete: "cascade"
-        });
-    };
+    // User.associate = function(models){
+    //     User.hasOne(models.Account, {
+    //         foreignKey: "accountUUID",
+    //         onDelete: "cascade"
+    //     });
+    // };
 
-    User.associate = function(models){
-        User.hasOne(models.StripeCustomer, {
-            foreignKey: "stripeCustomerUUID",
-            onDelete: "cascade"
-        });
-    };
+    // User.associate = function(models){
+    //     User.hasOne(models.StripeCustomer, {
+    //         foreignKey: "stripeCustomerUUID",
+    //         onDelete: "cascade"
+    //     });
+    // };
 
     return User;
 }

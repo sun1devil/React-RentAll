@@ -9,6 +9,9 @@ import moment from "moment";
 
 import API from "../../utils/API";
 
+import { Thumbnail } from 'react-bootstrap';
+
+
 // import RentForm from '../RentForm';
 // import Test from '../Test';
 
@@ -30,6 +33,7 @@ class Items extends React.Component{
 		confirmation: false,
 		rentalError: false,
 		availabileDates: [],
+    disabledDates:[],
 		chosenDates: [],
 	}
 
@@ -48,7 +52,7 @@ class Items extends React.Component{
         })
   }
 
-  // when user clicks on an item to rent
+  // when user clicks on an item to check availability
 	rentItem(e){
 		const button = e.target;
 		const index = parseInt(button.dataset.index);
@@ -72,8 +76,12 @@ class Items extends React.Component{
    		this.setState({
 			modalShow: false,
 			availabileDates: [],
+      disabledDates:[],
 			chosenDates: [],
-			item: []
+			item: [],
+      approve: false,
+      confirmation:false,
+      rentalError: false
 
 		})
 		// console.log("state", this.state)
@@ -88,21 +96,35 @@ class Items extends React.Component{
         //at the key in monthsObj add selectedDate to array
         // to use a variavle as a obj key you must use bracket notation (vs dot notation)
         this.state.monthsObj[formattedMonth].push(selectedDate);
-        this.state.item.disabled.push(new Date(year,month,day))
+        this.state.disabledDates.push(new Date(year,month,day))
         this.state.chosenDates.push(selectedDate);
 
         console.log(this.state.monthsObj);
     }
 
-    formatDates(){
-    	const itemDates = this.state.item.availability
-    	// console.log(itemDates)
-    	if(itemDates){
-    		itemDates.forEach(date => {
-	    		const day = moment(date).format('YYYY,MM,D')
-	    		this.state.availabileDates.push(new Date(day))
-    		})
-    	}
+     formatDates(){
+
+      if(this.state.item.availability !== undefined){
+        let itemDates = this.state.item.availability;
+        itemDates = JSON.parse(itemDates);
+
+        let disabledDates = this.state.item.disabled;
+        disabledDates = JSON.parse(disabledDates);
+
+      console.log("itemDates",itemDates)
+      if(itemDates){
+       itemDates.forEach(date => {
+         const day = moment(date).format('YYYY,MM,D')
+         this.state.availabileDates.push(new Date(day))
+       })
+       disabledDates.forEach(date => {
+         const day = moment(date).format('YYYY,MM,D')
+         this.state.disabledDates.push(new Date(day))
+       })
+
+      }
+      }
+
     }
 
     approveCharge(e){
@@ -112,9 +134,6 @@ class Items extends React.Component{
     	})
     }
 
-    handlePay(){
-    	console.log("pay")
-    }
 
 
   // // total months a user selected to rent
@@ -148,14 +167,20 @@ class Items extends React.Component{
   // inital modal content
   // item details and date selector
   createInitalRentalModal(){
+    this.formatDates()
+
       return(
+
           <div>
+            <h2>Item availability</h2>
             <p>{this.state.item.category}</p>
             <p>{this.state.item.description}</p>
+
             <ItemCalendar
               grabDates={this.grabDates.bind(this)}
                     selected={this.state.availabileDates}
-                    disabled={this.state.item.disabled}/>
+                    disabled={this.state.disabledDates}/>
+                    <h4>${this.state.item.price}/day</h4>
               <button className="light-btn btn round" onClick={this.approveCharge.bind(this)}><img src="./assets/img/right-arrow.png"/></button>
           </div>
         )
@@ -167,7 +192,7 @@ class Items extends React.Component{
     // user has not selected dates
     // and has not clicked continue
     // render item detail and calendar
-		if(!this.state.approve){
+		if(!this.state.approve && !this.state.confirmation){
       return(
         this.createInitalRentalModal()
       )
@@ -177,6 +202,7 @@ class Items extends React.Component{
 		else if(this.state.approve){
   			return(
   				<div>
+          <h2>rental Confirmation</h2>
   					<p>{this.state.item.category}</p>
   					<p>{this.state.item.description}</p>
   					<div>
@@ -196,14 +222,14 @@ class Items extends React.Component{
 			if(this.state.rentalError){
 				return(
   			<div>
-  				<p>error</p>
+  				<h2>error</h2>
   				</div>
 				)
 			}
       // display confirmation
 			return(
 				<div>
-					<p>confirmation</p>
+					<h2>confirmation</h2>
 				</div>
 			)
 		}
@@ -212,9 +238,11 @@ class Items extends React.Component{
   handlePay(){
     const rental = {
       itemUUID: this.state.item.uuui,
-      rentalTotal: this.state.total,
+      ownerUUID: this.state.item.userUUID,
+      rentalTotal: this.getTotal(),
       formatMonths: this.state.formattedMonthObj,
-      availabileDates: this.state.availabileDates
+      availabileDates: this.state.availabileDates,
+      chosenDates: this.state.chosenDates
     }
     // get current item info
       // item id
@@ -232,6 +260,10 @@ class Items extends React.Component{
       // then update state confirmation true (this will cause a re render of the modal content)
       // reset state to clear like we do in close modal
       // close modal, empty chose dates, empty item etc
+      this.setState({
+        confirmation:true,
+        approve: false
+      })
     })
     .catch(err=> {
       console.log("err",err)
@@ -249,12 +281,13 @@ class Items extends React.Component{
 				{this.props.results.map((result, index)=>{
 
 					return(
-						<div key={index}>
-
-							<p>{result.category}</p>
-							<p>{result.description}</p>
-							<p>${result.price}/{result.rate}</p>
-							<button className="btn light-btn" onClick={this.rentItem.bind(this)} data-index={index}>rent</button>
+            <div key={index}>
+             <Thumbnail src={`/assets/uploads/${result.uuid}.jpg`} alt={result.category} align="center">
+              <h3>{result.category}</h3>
+              <p>{result.description}</p>
+              <p>${result.price}/day</p>
+              <button className="btn light-btn" onClick={this.rentItem.bind(this)} data-index={index}>check availability</button>
+            </Thumbnail>
 						</div>
 					)
 				})}

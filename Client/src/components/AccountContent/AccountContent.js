@@ -17,18 +17,19 @@ class AccountContent extends React.Component {
 			<Grid >
 			  <Row className="clearfix">
 			    <Col sm={4} >
-			      <Nav bsStyle="pills" stacked>
-			        <NavItem eventKey="first">DASHBOARD</NavItem>
-			        <NavItem eventKey="second">PROFILE</NavItem>
+			      <Nav bsStyle="pills" stacked >
+			        <NavItem eventKey="first" className="light-btn">PROFILE</NavItem>
+			        <NavItem eventKey="second" className="light-btn">DASHBOARD</NavItem>
 			      </Nav>
 			    </Col>
 			    <Col sm={8}>
 			      <Tab.Content animation>
-			        <Tab.Pane eventKey="first">
-			        	<Dashboard/>
-			        </Tab.Pane>
-	    				<Tab.Pane eventKey="second">
+
+	    			<Tab.Pane eventKey="first">
 	    				{this.props.renderAccountProfile()}
+			        </Tab.Pane>
+			         <Tab.Pane eventKey="second">
+			        	<Dashboard/>
 			        </Tab.Pane>
 			      </Tab.Content>
 			    </Col>

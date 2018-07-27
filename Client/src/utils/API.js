@@ -38,10 +38,7 @@ export default {
 	postItem: function(data){
 		return fetch("http://localhost:8000/api/item", {
 			        method: 'POST',
-			        body: JSON.stringify(data),
-			        headers: {
-			            "Content-Type": "application/json; charset=utf-8"
-			        },
+			        body: data,
 			        credentials: 'include',
 			        mode: 'cors'
 			      });
@@ -106,5 +103,12 @@ export default {
 			      credentials: 'include',
 			      mode: 'cors'
 			    });
-}
+	},
+	deleteAccount: function(){
+		return fetch("http://localhost:8000/api/user", {
+			      method: 'DELETE',
+			      credentials: 'include',
+			      mode: 'cors'
+			    });
+	}
 }

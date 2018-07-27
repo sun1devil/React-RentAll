@@ -12,11 +12,11 @@ module.exports = function(sequelize, DataTypes){
         },
         category: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
         },
         description: {
             type: DataTypes.TEXT,
-            allowNull: false,
+            allowNull: false
         },
         price: {
             type: DataTypes.DECIMAL(8,2),
@@ -30,6 +30,22 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
+        categoryUUID: {
+            type: DataTypes.UUID,
+            allowNull: false
+        },
+        city: {
+            type: DataTypes.STRING
+        },
+        state: {
+            type: DataTypes.STRING
+        },
+        availability:{
+            type: DataTypes.STRING
+        },
+         disabled:{
+            type: DataTypes.STRING
+        },
         createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
 
@@ -42,24 +58,5 @@ module.exports = function(sequelize, DataTypes){
             foreignKey: "userUUID"
         });
     }
-
-    Item.associate = function(models){
-        Item.hasMany(models.Rental, {
-            foreignKey: "rentalUUID"
-        });
-    }
-
-    Item.associate = function(models){
-        Item.hasMany(models.Availability, {
-            foreignKey: "AvailabilityUUID"
-        });
-    }
-
-    Item.associate = function(models){
-        Item.belongsTo(models.Category, {
-            foreignKey: "categoryUUID"
-        });
-    };
-
     return Item;
 }

@@ -12,7 +12,10 @@ import PostForm from '../PostForm';
 class Navigation extends React.Component {
 	state = {
 		selectedBtn: "",
-		modalShow: false
+		modalShow: false,
+		error: false,
+		confirmation: false,
+		loading: false
 	}
 
 	// conditional rendering of navigation items
@@ -162,43 +165,120 @@ class Navigation extends React.Component {
 	    }
 	}
 
-
 	handleLoginSignUp(apiType, user){
 		apiType(user)
 		.then(data => {return data.json()})
 		.then(jsonObj=>{
-			// close modal
-			this.handleClose();
-			// update app.js state for islogged in
-			this.props.isAuthenicated();
-			window.location.pathname = "/account";
+
+			if(jsonObj.success === false){
+				// console.log("false",jsonObj)
+				this.setState({
+					error: true
+				});
+				document.getElementById("user-email").value = "";
+				document.getElementById("user-pw").value = "";
+
+			}else{
+				document.getElementById("user-email").value = "";
+				document.getElementById("user-pw").value = "";
+				// console.log("true",jsonObj)
+				// close modal
+				this.handleClose();
+				// update app.js state for islogged in
+				this.props.isAuthenicated();
+				window.location.pathname = "/account";
+			}
+
 		})
       	.catch(err=> console.log("err",err));
 	}
 
+	error(){
+		if(this.state.error){
+			return(
+				<p className="error"><strong>Authentication failed. check your inputs</strong></p>
+			)
+		}else {
+			return("")
+		}
+	}
+
+	removeError(){
+		this.setState({
+			error: false
+		});
+	}
 	// checks the value of selectedBtn state
 	// returns a form for which state it is
 	// signup send modal signup form
 	// else send modal signin form
 	renderForm(){
 		if(this.state.selectedBtn === "signup"){
+			this.resetPostModal
 			return(<form>
 					<h2>SIGNUP NOW!</h2>
-					<input type="email" placeholder="your@email.com" id="user-email" required />
+					<div className="error-wrap">
+						{this.error()}
+					</div>
+					<input type="email" placeholder="your@email.com" id="user-email" required onSelect={this.removeError.bind(this)}/>
 					<input type="password" placeholder="6 character password" id="user-pw" required min="6"/>
 					<button onClick={this.handleLoginSubmit.bind(this)} className="btn dark-btn">Signup</button>
 				</form>);
 		}
 		else if(this.state.selectedBtn === "signin"){
+			this.resetPostModal
 			return(<form>
 				<h2>SIGNIN NOW!</h2>
-				<input type="email" placeholder="your@email.com" id="user-email" required />
+				<div className="error-wrap">
+					{this.error()}
+				</div>
+				<input type="email" placeholder="your@email.com" id="user-email" required onSelect={this.removeError.bind(this)}/>
 				<input type="password" placeholder="6 character password" id="user-pw" required min="6" />
 				<button onClick={this.handleLoginSubmit.bind(this)} className="btn dark-btn">SignIn</button>
 			</form>);
 		}else if(this.state.selectedBtn === "post") {
-			return(<PostForm/>)
+			this.resetPostModal
+			return(<PostForm showLoading={this.showLoading.bind(this)} showConfirmation={this.showConfirmation.bind(this)}/>)
+		}else if(this.state.loading){
+			return(
+				<div>
+					<h2>loading...</h2>
+					<img className="loading" src="./assets/img/loading.gif" alt="loading"/>
+				</div>
+			);
 		}
+		else if(this.state.confirmation){
+			return(
+				<div>
+					<h2>Congratulations!</h2>
+					<img className="congrats" src="./assets/img/congrats.png" alt="congrats"/>
+				</div>
+			);
+		}
+	}
+
+	resetPostModal(){
+		this.setState({
+			loading: true,
+			confirmation: false
+		})
+	}
+
+	showLoading(){
+		this.setState({
+			confirmation: false,
+			loading: true,
+			selectedBtn: ""
+		})
+	}
+
+	showConfirmation(){
+		this.setState({
+			loading: false,
+			selectedBtn: "",
+			confirmation: true
+		})
+
 	}
 
 	// update state for modalShow to false
@@ -261,16 +341,4 @@ export default Navigation;
 
 	----------
 		on click of signup or sign in will render modal with form
-
-	*/
-	/*
-
-
-
-
-	      <NavItem eventKey={2} href="#">
-	        Link
-	      </NavItem>
-	    </Nav>
-
-	*/
+*/

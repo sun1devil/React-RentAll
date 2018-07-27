@@ -17,6 +17,7 @@ const MultipleDatesCalendar = withMultipleDates(Calendar);
 class ItemCalendar extends React.Component {
 	constructor(props){
 		super(props)
+    this.dayDisabler =this.dayDisabler.bind(this);
 	}
   state ={
     days: this.props.disabled
@@ -45,7 +46,7 @@ class ItemCalendar extends React.Component {
 				      onSelect={this.props.grabDates}
               disabledDates={this.state.days}
               min={new Date()}
-              max={new Date(2018,9,30)}
+              max={new Date(2018,9,31)}
               height={250}/>
             </div>
         );

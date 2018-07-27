@@ -7,14 +7,15 @@ import API from "../../utils/API";
 import ItemCalendar from "../ItemCalendar";
 
 import { FormGroup, FormControl, Checkbox, Radio, ControlLabel, Button, HelpBlock} from 'react-bootstrap';
+
 import moment from "moment";
 
 // form item helper function – boostrap components
 function FieldGroup({ id, label, help, ...props }) {
   return (
-    <FormGroup id={id}>
+    <FormGroup >
       <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
+      <FormControl {...props} id={id}/>
       {help && <HelpBlock>{help}</HelpBlock>}
     </FormGroup>
   );
@@ -23,18 +24,36 @@ function FieldGroup({ id, label, help, ...props }) {
 class PostForm extends React.Component {
 	constructor(props) {
     	super(props);
+        this.getCategories = this.getCategories.bind(this)
 	}
-	 state = {
+
+	state = {
         monthsObj: {},
         selectedDates: [],
+        availDates:[],
         disabled: [],
         rate: '',
         feature: '',
-        categories: ["appliance","tools","gardening","electronic", "apparel", "sporting goods", "furniture", "camping", "party", "cleaning", "cooking", "crafts", "transportation", "recreation"]
+        categories: [],
+        selectedCat: "",
     }
 
-    componentWillMount(){
-        this.createMonthsObj()
+    componentDidMount(){
+        this.createMonthsObj();
+
+        this.getCategories();
+    }
+
+    getCategories(){
+
+        API.getCategories()
+        .then(data => {return data.json()})
+        .then(jsonObj=>{
+            this.setState({
+                categories: jsonObj
+            });
+        })
+        .catch(err=> console.log("err",err));
     }
 
 	createMonthsObj(){
@@ -50,56 +69,56 @@ class PostForm extends React.Component {
 
     grabDates(date) {
         const selectedDate = moment(date).format('YYYY/MM/D');
-        const formattedMonth = moment(date).format('MMMM');
+        this.state.availDates.push(selectedDate);
+        // const formattedMonth = moment(date).format('MMMM');
         //at the key in monthsObj add selectedDate to array
         // to use a variavle as a obj key you must use bracket notation (vs dot notation)
-        this.state.monthsObj[formattedMonth].push(selectedDate);
+        // this.state.monthsObj[formattedMonth].push(selectedDate);
     }
 
     handlePostSubmit(e) {
         e.preventDefault();
 
-        const data = new FormData();
-	    data.append('file', document.querySelector('#formControlsFile > input').files[0]);
-	    data.append('item_category', document.getElementById("item-category").value);
-	    data.append('item_description', document.getElementById("item-descript").value);
-	    data.append('item_price', document.getElementById("item-price").value);
-	    data.append('item_rate', this.state.rate);
-	    data.append('item_featured', this.state.feature);
-	    console.log(data);
-
-	    fetch('http://localhost:8000/api/item', {
-	      method: 'POST',
-	      body: data,
-	    })
-
-		// const item = {
-		// 	category: document.getElementById("item-category").value,
-		// 	description: document.getElementById("item-descript").value,
-		// 	price: document.getElementById("item-price").value,
-		// 	rate: this.state.rate,
-		// 	featured: this.state.feature
-		// }
-		// API.postItem(item)
-
-
-
-       // console.log("dates", this.state.monthsObj);
         // create an empty obj to hold all the filtered keys from months obj (only keys with value)
         // const filteredMonths = {};
-
         // // loop through all the keys in the monthsObj
         // for (var key in this.state.monthsObj){
         //     // if the key has value
         //     // add it to the new obj (filteredMonths)
         //     if(this.state.monthsObj[key].length>0){
         //         const daysArray = this.state.monthsObj[key]
-        //         filteredMonths[key] =  daysArray.toString();
+        //         filteredMonths[key] =  daysArray;
         //     }
         // }
-        // console.log(filteredMonths);
-        // console.log(item);
 
+        const data = new FormData();
+	    data.append('file', document.querySelector('#itemFile').files[0]);
+	    data.append('item_category', this.state.selectedCat);
+        data.append('item_categoryid', document.getElementById("item-category").value);
+	    data.append('item_description', document.getElementById("item-descript").value);
+	    data.append('item_price', document.getElementById("item-price").value);
+	    data.append('item_featured', this.state.feature);
+	    data.append('available_dates', JSON.stringify(this.state.availDates));
+         data.append('disabled_dates', JSON.stringify([moment().format('YYYY/MM/D')]));
+
+        // console.log(JSON.stringify(this.state.availDates))
+		this.postItem(data);
+    }
+
+    postItem(item){
+
+    	API.postItem(item)
+    	.then(data => {return data.json()})
+	    .then(jsonObj=>{
+	    	// console.log("db Item:", jsonObj);
+            const thisComponent = this.props;
+            this.props.showLoading()
+            setTimeout(function(){
+                 thisComponent.showConfirmation();
+            }, 1000);
+
+	    })
+    	.catch(err=>{console.log("err", err)});
     }
 
     handleRateChange(e){
@@ -113,17 +132,27 @@ class PostForm extends React.Component {
       	});
     }
 
+    change(event){
+        const option = event.target.options[event.target.selectedIndex].text
+        // console.log(option)
+        this.setState({
+            selectedCat: option
+        })
+    }
 	render(){
 		return(
+        <div ID="post-form">
+         <h2>Post your item</h2>
 		 <form onSubmit={this.handlePostSubmit.bind(this)}>
-		  <h3>All Items rented by day</h3>
+
+		  <p>All Items rented by day</p>
 		 	<FormGroup>
 		      <ControlLabel>Select</ControlLabel>
-		      <FormControl componentClass="select" placeholder="select" id="item-category">
+		      <FormControl componentClass="select" placeholder="select" id="item-category" onChange={this.change.bind(this)}>
 		        // <option>select</option>
-		       	{this.state.categories.map((name, index)=>{
+		       	{this.state.categories.map((elem, index)=>{
 		       		return(
-		       			<option key={index} value={name}>{name}</option>
+		       			<option key={index} value={elem.uuid}>{elem.name}</option>
 		       		)
 		       	})}
 		      </FormControl>
@@ -133,7 +162,7 @@ class PostForm extends React.Component {
 		    	<FormControl componentClass="textarea" id="item-descript"/>
 		    </FormGroup>
 		     <FieldGroup
-		      id="formControlsFile"
+		      id="itemFile"
 		      type="file"
 		      label="File" />
 		    <ItemCalendar
@@ -157,9 +186,9 @@ class PostForm extends React.Component {
 		      <FormControl.Static className="featured" >*by checking this box you agree to a fee</FormControl.Static>
 		    </FormGroup>
 
-		    <Button type="submit">Submit</Button>
+		    <button type="submit" className="btn dark-btn">Submit</button>
 		  </form>
-
+          </div>
 
 		)
 	}

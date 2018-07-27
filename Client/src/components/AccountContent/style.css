@@ -1,8 +1,20 @@
 .account-content {
-	padding-top: 5%;
+	padding-top: 10%;
 	min-height: 100vh;
 }
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+	background-color: #009688;
 
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
+	text-transform: uppercase;
+	font-weight: 400;
 
+}
+.nav-pills>li>a {
+	color:#fff !important;
+}
+.nav-stacked>li {
+	border-radius: 3px;
+}
 @media only screen and (max-width: 40em) { } /* max-width 640px, mobile-only styles, use when QAing mobile issues */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */

@@ -48,13 +48,21 @@ module.exports = {
   //     .then(dbUser => res.json(dbUser))
   //     .catch(err => res.status(422).json(err));
   // },
-  // remove: function(req, res) {
-  //   db.User
-  //     .findById({ _id: req.params.id })
-  //     .then(dbUser => dbUser.remove())
-  //     .then(dbUser => res.json(dbUser))
-  //     .catch(err => res.status(422).json(err));
-  // },
+  remove: function(req, res) {
+    db.User
+      .destroy({ where:{uuid: req.session.passport.user} })
+      .then(dbUser => {
+          req.session.destroy(err => {
+          req.logout();
+          res.clearCookie("user_sid");
+          res.clearCookie("user_email");
+          res.clearCookie("authenticated");
+          res.json(false)
+        });
+
+      })
+      .catch(err => res.status(422).json(err));
+  },
 
   getCurrentuserId: function(req){
     let userId;

@@ -49,7 +49,7 @@ class Search extends React.Component {
 				categories: jsonObj
 			});
 		})
-      	.catch(err=> console.log("err",err));
+    .catch(err=> console.log("err",err));
 	}
 
 	// Teach Autosuggest how to calculate suggestions for any given input value.

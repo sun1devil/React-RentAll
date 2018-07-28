@@ -17,24 +17,43 @@ class Search extends Component {
       searchLocation: "",
       searchItem: "",
       categoryID: "",
-      results:[]
+      results:[],
+      isLoggedIn: false
     }
   }
 
   //for server side code
   componentWillMount() {
+    
+    this.isAuthenicated();
+
     if(this.props.location.state){
 
       const searchLocation = this.parseLocation(this.props.location.state.searchLocation);
       this.getItems([this.props.location.state.categoryUUID, this.props.location.state.searchLocation])
 
-        this.setState({
+      this.setState({
             searchLocation: this.props.location.state.searchLocation,
             searchItem: this.props.location.state.searchItem,
             categoryID: this.props.location.state.categoryUUID
-        })
+      })
     }
+   
   }
+
+  isAuthenicated(){
+    API.isAuthenicated()
+    .then(data => {return data.json()})
+    .then(jsonObj=>{
+      // console.log("isLoggedIn search Page:",jsonObj);
+      this.setState({
+        isLoggedIn: jsonObj
+      });
+    })
+    .catch(err=> console.log("err",err));
+  }
+
+
 
   parseLocation(location){
     let parsedLocation = location
@@ -50,11 +69,10 @@ class Search extends Component {
     .then(data => {return data.json()})
     .then(jsonObj=>{
       console.log("db items", jsonObj)
-      console.log(jsonObj);
-
-        this.setState({
-          results: jsonObj
-        })
+      // console.log(jsonObj);
+      this.setState({
+        results: jsonObj
+      })
 
     })
      .catch(err=> console.log("err",err));
@@ -62,12 +80,13 @@ class Search extends Component {
 
   // what to render on the page for items
   searchContent(){
+
     if(this.state.results.length === 0){
         return(<h1>NO RESULTS</h1>);
     }
     else{
         return(
-           <Items results={this.state.results} />
+           <Items results={this.state.results} isLoggedIn={this.state.isLoggedIn}/>
         )
     }
   }

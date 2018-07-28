@@ -34,12 +34,12 @@ class Items extends React.Component{
 		rentalError: false,
 		availabileDates: [],
     disabledDates:[],
-		chosenDates: [],
+		chosenDates: []
 	}
 
 	componentWillMount(){
-        this.createMonthsObj()
-    }
+    this.createMonthsObj();
+  }
 
 	createMonthsObj(){
         // use moment to create an array of all months
@@ -85,55 +85,53 @@ class Items extends React.Component{
 
 		})
 		// console.log("state", this.state)
-  	}
+  }
 
-  	grabDates(date) {
-        const selectedDate = moment(date).format('MM/D/YYYY');
-       	const day = parseInt(moment(date).format('D'));
-        const month = parseInt(moment(date).format('M')) - 1;
-        const year = parseInt(moment(date).format('YYYY'));
-        const formattedMonth = moment(date).format('MMMM');
-        //at the key in monthsObj add selectedDate to array
-        // to use a variavle as a obj key you must use bracket notation (vs dot notation)
-        this.state.monthsObj[formattedMonth].push(selectedDate);
-        this.state.disabledDates.push(new Date(year,month,day))
-        this.state.chosenDates.push(selectedDate);
+	grabDates(date) {
+      const selectedDate = moment(date).format('MM/D/YYYY');
+     	const day = parseInt(moment(date).format('D'));
+      const month = parseInt(moment(date).format('M')) - 1;
+      const year = parseInt(moment(date).format('YYYY'));
+      const formattedMonth = moment(date).format('MMMM');
+      //at the key in monthsObj add selectedDate to array
+      // to use a variavle as a obj key you must use bracket notation (vs dot notation)
+      this.state.monthsObj[formattedMonth].push(selectedDate);
+      this.state.disabledDates.push(new Date(year,month,day))
+      this.state.chosenDates.push(selectedDate);
 
-        console.log(this.state.monthsObj);
-    }
+      console.log(this.state.monthsObj);
+  }
 
-     formatDates(){
+  formatDates(){
 
-      if(this.state.item.availability !== undefined){
-        let itemDates = this.state.item.availability;
-        itemDates = JSON.parse(itemDates);
+    if(this.state.item.availability !== undefined){
+      let itemDates = this.state.item.availability;
+      itemDates = JSON.parse(itemDates);
 
-        let disabledDates = this.state.item.disabled;
-        disabledDates = JSON.parse(disabledDates);
+      let disabledDates = this.state.item.disabled;
+      disabledDates = JSON.parse(disabledDates);
 
-      console.log("itemDates",itemDates)
-      if(itemDates){
-       itemDates.forEach(date => {
-         const day = moment(date).format('YYYY,MM,D')
-         this.state.availabileDates.push(new Date(day))
-       })
-       disabledDates.forEach(date => {
-         const day = moment(date).format('YYYY,MM,D')
-         this.state.disabledDates.push(new Date(day))
-       })
-
-      }
-      }
+    console.log("itemDates",itemDates)
+    if(itemDates){
+     itemDates.forEach(date => {
+       const day = moment(date).format('YYYY,MM,D')
+       this.state.availabileDates.push(new Date(day))
+     })
+     disabledDates.forEach(date => {
+       const day = moment(date).format('YYYY,MM,D')
+       this.state.disabledDates.push(new Date(day))
+     })
 
     }
-
-    approveCharge(e){
-    	e.preventDefault();
-    	this.setState({
-    		approve: true
-    	})
     }
+  }
 
+  approveCharge(e){
+  	e.preventDefault();
+  	this.setState({
+  		approve: true
+  	})
+  }
 
 
   // // total months a user selected to rent
@@ -163,7 +161,6 @@ class Items extends React.Component{
  		 return(total)
   }
 
-
   // inital modal content
   // item details and date selector
   createInitalRentalModal(){
@@ -188,67 +185,73 @@ class Items extends React.Component{
 
   // conditional html/jsx creation content for the popup
 	renderModalContent(){
-    // if approve is false
-    // user has not selected dates
-    // and has not clicked continue
-    // render item detail and calendar
-		if(!this.state.approve && !this.state.confirmation){
-      return(
-        this.createInitalRentalModal()
-      )
+
+    // check if user is logged in (isAuthenicated)
+    
+    // console.log("isLoggedIn",this.props.isLoggedIn);
+
+
+    if(this.props.isLoggedIn){
+       // if approve is false
+      // user has not selected dates
+      // and has not clicked continue
+      // render item detail and calendar
+      if(!this.state.approve && !this.state.confirmation){
+        return(
+          this.createInitalRentalModal()
+        )
+      }
+      // user has selected dates and clicked continue
+      // display the rental details and the total with a pay button
+      else if(this.state.approve){
+          return(
+            <div>
+            <h2>rental Confirmation</h2>
+              <p>{this.state.item.category}</p>
+              <p>{this.state.item.description}</p>
+              <div>
+                {this.state.chosenDates.map((date, index)=>{
+                  return(<p key={index}>{date}</p>)
+                })}
+              </div>
+              <button className="dark-btn btn" onClick={this.handlePay.bind(this)}>PAY <span>$</span>{this.getTotal()}</button>
+            </div>
+          )
+      }
+      // user has clicked pay and payment was made by the server
+      // display the completion of rental content
+      else if(this.state.confirmation){
+        // server sent back an error when user tried to pay
+        // display the error
+        if(this.state.rentalError){
+          return(
+          <div>
+            <h2>error</h2>
+            </div>
+          )
+        }
+        // display confirmation
+        return(
+          <div>
+            <h2>confirmation</h2>
+          </div>
+        )
+      }
+    }else {
+      return(<div><h2>OH NO!</h2><h4>you must be logged in to be able to look at this item.</h4></div>);
     }
-    // user has selected dates and clicked continue
-    // display the rental details and the total with a pay button
-		else if(this.state.approve){
-  			return(
-  				<div>
-          <h2>rental Confirmation</h2>
-  					<p>{this.state.item.category}</p>
-  					<p>{this.state.item.description}</p>
-  					<div>
-	  					{this.state.chosenDates.map((date, index)=>{
-	  						return(<p key={index}>{date}</p>)
-	  					})}
-  					</div>
-  					<button className="dark-btn btn" onClick={this.handlePay.bind(this)}>PAY <span>$</span>{this.getTotal()}</button>
-  				</div>
-  			)
-		}
-    // user has clicked pay and payment was made by the server
-    // display the completion of rental content
-		else if(this.state.confirmation){
-      // server sent back an error when user tried to pay
-      // display the error
-			if(this.state.rentalError){
-				return(
-  			<div>
-  				<h2>error</h2>
-  				</div>
-				)
-			}
-      // display confirmation
-			return(
-				<div>
-					<h2>confirmation</h2>
-				</div>
-			)
-		}
+   
 	}
 
   handlePay(){
     const rental = {
-      itemUUID: this.state.item.uuui,
+      itemUUID: this.state.item.uuid,
       ownerUUID: this.state.item.userUUID,
       rentalTotal: this.getTotal(),
-      formatMonths: this.state.formattedMonthObj,
       availabileDates: this.state.availabileDates,
       chosenDates: this.state.chosenDates
     }
-    // get current item info
-      // item id
-      // selected dates
-    // total
-
+   
    this.createRental(rental)
   }
 
@@ -293,6 +296,7 @@ class Items extends React.Component{
 				})}
 
 				<Popup modalShow={this.state.modalShow} handleClose={this.handleClose.bind(this)}>
+
 					{this.renderModalContent()}
 				</ Popup>
 

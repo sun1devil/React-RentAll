@@ -1,5 +1,0 @@
-when an item is rented collect the selected dates and update the item availability and unavailable col. 
-create a rental in the db
-after an item is rented fix error that occurs when you select the same item again
-
-when a user click check availability on an item check if they are logged in. if not show sign in modal under Item on client side

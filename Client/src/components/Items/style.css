@@ -1,6 +1,8 @@
 .thumbnail {
 	width: 32.33%;
 	margin: 10px;
+  display: inline-block;
+  float: left;
 }
 
 

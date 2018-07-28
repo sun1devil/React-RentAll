@@ -1,15 +1,28 @@
+var uuidv1  = require('uuid/v1');
+var Sequelize = require("sequelize");
+
 module.exports = function(sequelize, DataTypes) {
     var Rental = sequelize.define("Rentals",{
-        start_date: {
-            type: DataTypes.DATEONLY,
+        uuid: {
+            primaryKey: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
+            isUnique :true
+        },
+        rentalDates: {
+            type: DataTypes.STRING,
             allowNull: false
         },
-        end_date: {
-            type: DataTypes.DATEONLY,
-            allowNull: false
-        },
-        total_cost: {
+        totalCost: {
             type: DataTypes.DECIMAL(12,2),
+            allowNull: false
+        },
+        itemUUID: {
+            type: DataTypes.UUID,
+            allowNull: false
+        },
+        itemOwnerUUID: {
+            type: DataTypes.UUID,
             allowNull: false
         }
     });
@@ -18,10 +31,6 @@ module.exports = function(sequelize, DataTypes) {
 
     Rental.associate = function(models){
         Rental.belongsTo(models.User, {foreignKey: "userUUID"});
-    }
-
-     Rental.associate = function(models){
-        Rental.belongsTo(models.Item, {foreignKey: "itemUUID"});
     }
 
     return Rental;

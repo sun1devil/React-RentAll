@@ -30,7 +30,7 @@ module.exports = {
       price: req.body.item_price,
     };
 
-    console.log("item", item)
+    console.log("item", item);
 
       db.Item.create(item)
       .then(dbItem => {

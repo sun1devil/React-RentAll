@@ -79,10 +79,10 @@ class App extends React.Component {
   isAuthenicated(){
     API.isAuthenicated()
     .then(data => {return data.json()})
-    .then(json=>{
-      console.log("isLoggedIn:",json);
+    .then(jsonObj=>{
+      console.log("isLoggedIn:",jsonObj);
       this.setState({
-        isLoggedIn: json
+        isLoggedIn: jsonObj
       });
 
     })
@@ -119,7 +119,7 @@ class App extends React.Component {
 
               <Route exact path="/about" component={About} />
 
-              <Route exact path="/account" component={Account} />
+              <Route exact path="/account" component={Account} isLoggedIn={this.state.isLoggedIn} />
 
               <Route exact path="/search" component={Search} />
 

@@ -15,6 +15,8 @@ import { CardElement, injectStripe} from 'react-stripe-elements';
 
 import "./style.css";
 
+
+
 // boostrap input field helper function
 function FieldGroup({ id, label, help, ...props }) {
   return (
@@ -35,12 +37,12 @@ class ProfileForm extends React.Component {
 
 	state = {
 		name: this.props.initailState.name,
-		street: this.props.initailState.street,
-		city:this.props.initailState.city,
-		state: this.props.initailState.state,
-		zip: this.props.initailState.zip,
-		country: this.props.initailState.country,
-		phone: this.props.initailState.phone,
+  	street: this.props.initailState.street,
+  	city:this.props.initailState.city,
+  	state: this.props.initailState.state,
+  	zip: this.props.initailState.zip,
+  	country: this.props.initailState.country,
+  	phone: this.props.initailState.phone,
 		complete: false,
 		address: '',
 		addressArray:[],
@@ -48,8 +50,7 @@ class ProfileForm extends React.Component {
 	}
 
 	componentDidMount(){
-		console.log(this.props)
-		if(this.props.initailState.street.length > 0){
+		if(this.props.initailState.street.length >0){
 			this.setState({
 				address: `${this.props.initailState.street},${this.props.initailState.city},${this.props.initailState.state}, ${this.props.initailState.country}`,
 			})
@@ -121,15 +122,17 @@ class ProfileForm extends React.Component {
 		    	stripeToken: token,
 		    	email: userEmail
 		    }
-		    console.log(accountData)
+		    // console.log(accountData)
 		    // call function (CREATE) and send in helper function data ,
 		    // helper function will call the server and send that data to
 			await this.userAccount(API.createAccount, accountData);
+		
 		}
 		else {
 			// call function (PUT) and send in helper function data ,
 		    // helper function will call the server and send that data to
 			this.userAccount(API.updateAccount, userData);
+		
 		}
 	}
 
@@ -138,7 +141,8 @@ class ProfileForm extends React.Component {
 	userAccount(actionFunction, data){
 		actionFunction(data)
 		.then(results=>{
-			// console.log("results", results);
+			console.log("results", this.props);
+
 			this.props.getUserAccount();
 
 		})
@@ -149,7 +153,8 @@ class ProfileForm extends React.Component {
 		if(this.state.update){
 			return("");
 		}
-		return (<CardElement />);
+		return ( <div><label>Payment</label>
+		     <div className="card-wrap"><CardElement /></div></div>);
 	}
 
 	showCancel(){
@@ -189,8 +194,8 @@ class ProfileForm extends React.Component {
 		                  : 'suggestion-item';
 		                // inline style for demonstration purpose
 		                const style = suggestion.active
-		                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-		                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+		                  ? { backgroundColor: 'rgba(37,124,110,.5)', color:"#fff", cursor: 'pointer' }
+		                  : { backgroundColor: 'rgba(255,255,255,.5)', color:"#fff",cursor: 'pointer' };
 		                return (
 		                <div
 		                    {...getSuggestionItemProps(suggestion, {
@@ -217,6 +222,8 @@ class ProfileForm extends React.Component {
 
 		      {this.showCC()}
 
+		      <br/>
+		       <br/>
          	<button onClick={this.submit} className="dark-btn btn">Submit</button>
 
          	{this.showCancel()}

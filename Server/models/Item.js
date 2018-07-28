@@ -43,7 +43,7 @@ module.exports = function(sequelize, DataTypes){
         availability:{
             type: DataTypes.STRING
         },
-         disabled:{
+        disabled:{
             type: DataTypes.STRING
         },
         createdAt: Sequelize.DATE,

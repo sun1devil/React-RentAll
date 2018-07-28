@@ -90,7 +90,7 @@ class PostForm extends React.Component {
         //         filteredMonths[key] =  daysArray;
         //     }
         // }
-
+        const today =  JSON.stringify([moment().format('YYYY/MM/D')])
         const data = new FormData();
 	    data.append('file', document.querySelector('#itemFile').files[0]);
 	    data.append('item_category', this.state.selectedCat);
@@ -99,10 +99,11 @@ class PostForm extends React.Component {
 	    data.append('item_price', document.getElementById("item-price").value);
 	    data.append('item_featured', this.state.feature);
 	    data.append('available_dates', JSON.stringify(this.state.availDates));
-         data.append('disabled_dates', JSON.stringify([moment().format('YYYY/MM/D')]));
+         data.append('disabled_dates', today);
 
         // console.log(JSON.stringify(this.state.availDates))
 		this.postItem(data);
+        // console.log("data", JSON.stringify([moment().format('YYYY/MM/D')]))
     }
 
     postItem(item){
@@ -126,6 +127,7 @@ class PostForm extends React.Component {
       		rate: e.currentTarget.value
       	});
     }
+
     handleFeatured(e){
     	this.setState({
       		feature: e.currentTarget.value
@@ -139,6 +141,7 @@ class PostForm extends React.Component {
             selectedCat: option
         })
     }
+
 	render(){
 		return(
         <div ID="post-form">
@@ -149,7 +152,7 @@ class PostForm extends React.Component {
 		 	<FormGroup>
 		      <ControlLabel>Select</ControlLabel>
 		      <FormControl componentClass="select" placeholder="select" id="item-category" onChange={this.change.bind(this)}>
-		        // <option>select</option>
+		        <option>select</option>
 		       	{this.state.categories.map((elem, index)=>{
 		       		return(
 		       			<option key={index} value={elem.uuid}>{elem.name}</option>
